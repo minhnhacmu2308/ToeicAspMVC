@@ -1,0 +1,42 @@
+﻿
+<div id="layoutSidenav_nav">
+    @{ var userInfomatiom = (ToeicAspMVC.Models.User)Session["ADMIN"]; }
+    <nav style="background-color: #CCCCCC !important" class="sb-sidenav accordion " id="sidenavAccordion">
+        <div class="sb-sidenav-menu">
+            <div class="nav">
+                <a class="nav-link collapsed" href="/AdminHome/Index">
+                    <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
+                    Bảng điều khiển
+                </a>
+                <a class="nav-link collapsed" href="/AdminUser/Customer">
+                    <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
+                    Quản lý khách hàng
+                </a>
+                @if (userInfomatiom.idRole == 1)
+                {
+                    <a class="nav-link collapsed" href="/AdminUser/Index">
+                        <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
+                        Quản lý nhân viên
+                    </a>
+                    <a class="nav-link collapsed" href="/AdminHome/Index">
+                        <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
+                        Quản lý bảo hiểm
+                    </a>
+                }
+                <a class="nav-link collapsed" href="/AdminHome/Index">
+                    <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
+                    Quản lý dịch vụ
+                </a>
+                <a class="nav-link collapsed" href="/AdminHome/Index">
+                    <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
+                    Quản lý hợp đồng
+                </a>
+            </div>
+        </div>
+    </nav>
+</div>
+
+
+
+
+
