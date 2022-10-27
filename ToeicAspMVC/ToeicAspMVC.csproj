@@ -130,14 +130,25 @@
     <Compile Include="Controllers\Admin\AdminAuthenticationController.cs" />
     <Compile Include="Controllers\Admin\AdminHomeController.cs" />
     <Compile Include="Controllers\Admin\AdminModulesController.cs" />
+    <Compile Include="Controllers\AuthenticationController.cs" />
+    <Compile Include="Controllers\CourseController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ModulesController.cs" />
+    <Compile Include="Daos\CommentDao.cs" />
+    <Compile Include="Daos\CourseDao.cs" />
+    <Compile Include="Daos\DistanceDao.cs" />
+    <Compile Include="Daos\MyTargetDao.cs" />
+    <Compile Include="Daos\PostDao.cs" />
+    <Compile Include="Daos\ProductDao.cs" />
+    <Compile Include="Daos\RoleDao.cs" />
+    <Compile Include="Daos\TargetDao.cs" />
     <Compile Include="Daos\UserDao.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202210121610164_new.cs" />
-    <Compile Include="Migrations\202210121610164_new.designer.cs">
-      <DependentUpon>202210121610164_new.cs</DependentUpon>
+    <Compile Include="Migrations\202210271605251_new-a.cs" />
+    <Compile Include="Migrations\202210271605251_new-a.designer.cs">
+      <DependentUpon>202210271605251_new-a.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Comment.cs" />
@@ -169,6 +180,119 @@
     <Content Include="Content\Admin\js\lightslider.js" />
     <Content Include="Content\Admin\js\popper.min.js" />
     <Content Include="Content\Admin\js\scripts.js" />
+    <Content Include="Content\assets\css\responsive.css" />
+    <Content Include="Content\assets\css\style.css" />
+    <Content Include="Content\assets\css\vendor\animate.min.css" />
+    <Content Include="Content\assets\css\vendor\bootstrap.min.css" />
+    <Content Include="Content\assets\css\vendor\elegant-icons.css" />
+    <Content Include="Content\assets\css\vendor\fonts\ElegantIcons.svg" />
+    <Content Include="Content\assets\css\vendor\nice-select.css" />
+    <Content Include="Content\assets\css\vendor\owl.carousel.min.css" />
+    <Content Include="Content\assets\css\vendor\perfect-scrollbar.css" />
+    <Content Include="Content\assets\css\vendor\slick.css" />
+    <Content Include="Content\assets\css\vendor\slicknav.css" />
+    <Content Include="Content\assets\css\vendor\ticker-style.css" />
+    <Content Include="Content\assets\css\widgets.css" />
+    <Content Include="Content\assets\imgs\637722380767510566images %281%29.jpg" />
+    <Content Include="Content\assets\imgs\637722413602613016images %282%29.jpg" />
+    <Content Include="Content\assets\imgs\637722414672301107bo-anh-cuoi-duoc-chup-tai-noi-giao-thoa-cua-dat-troi-tho-mong-va-huyen-bi8.jpg" />
+    <Content Include="Content\assets\imgs\637722417112289922images %281%29.jpg" />
+    <Content Include="Content\assets\imgs\637722419101618587bo-anh-cuoi-duoc-chup-tai-noi-giao-thoa-cua-dat-troi-tho-mong-va-huyen-bi21.jpg" />
+    <Content Include="Content\assets\imgs\637722419882980389headerpng.png" />
+    <Content Include="Content\assets\imgs\637722420036137001download %281%29.jpg" />
+    <Content Include="Content\assets\imgs\6377285453346706282.png" />
+    <Content Include="Content\assets\imgs\6377285477084274071.png" />
+    <Content Include="Content\assets\imgs\6377285482093100543.png" />
+    <Content Include="Content\assets\imgs\6377285486016160885.png" />
+    <Content Include="Content\assets\imgs\6377285489496971366.png" />
+    <Content Include="Content\assets\imgs\6377285492493637667.png" />
+    <Content Include="Content\assets\imgs\6377285496939788849.png" />
+    <Content Include="Content\assets\imgs\637752925986833524Screenshot 2021-12-11 222023.png" />
+    <Content Include="Content\assets\imgs\637752927337636773Screenshot 2021-12-11 222023.png" />
+    <Content Include="Content\assets\imgs\637752927981575833Screenshot 2021-12-11 222023.png" />
+    <Content Include="Content\assets\imgs\637752928768594873Screenshot 2021-12-11 222023.png" />
+    <Content Include="Content\assets\imgs\637752931383564896Screenshot 2021-12-11 222023.png" />
+    <Content Include="Content\assets\imgs\637758745668800098thumbnail_image003.png" />
+    <Content Include="Content\assets\imgs\637758750285467479Screenshot 2021-12-18 212822.png" />
+    <Content Include="Content\assets\imgs\637758751810768875thumbnail_image003.png" />
+    <Content Include="Content\assets\imgs\ads\ads-1.jpg" />
+    <Content Include="Content\assets\imgs\authors\author-2.jpg" />
+    <Content Include="Content\assets\imgs\authors\author-3.jpg" />
+    <Content Include="Content\assets\imgs\authors\author-4.jpg" />
+    <Content Include="Content\assets\imgs\authors\author.jpg" />
+    <Content Include="Content\assets\imgs\authors\featured.png" />
+    <Content Include="Content\assets\imgs\news\forum.jpg" />
+    <Content Include="Content\assets\imgs\news\news-1.jpg" />
+    <Content Include="Content\assets\imgs\news\news-10.jpg" />
+    <Content Include="Content\assets\imgs\news\news-11.jpg" />
+    <Content Include="Content\assets\imgs\news\news-12.jpg" />
+    <Content Include="Content\assets\imgs\news\news-13.jpg" />
+    <Content Include="Content\assets\imgs\news\news-16.jpg" />
+    <Content Include="Content\assets\imgs\news\news-17.jpg" />
+    <Content Include="Content\assets\imgs\news\news-18.jpg" />
+    <Content Include="Content\assets\imgs\news\news-19.jpg" />
+    <Content Include="Content\assets\imgs\news\news-2.jpg" />
+    <Content Include="Content\assets\imgs\news\news-3.jpg" />
+    <Content Include="Content\assets\imgs\news\news-4.jpg" />
+    <Content Include="Content\assets\imgs\news\news-5.jpg" />
+    <Content Include="Content\assets\imgs\news\news-6.jpg" />
+    <Content Include="Content\assets\imgs\news\news-7.jpg" />
+    <Content Include="Content\assets\imgs\news\news-8.jpg" />
+    <Content Include="Content\assets\imgs\news\news-9.jpg" />
+    <Content Include="Content\assets\imgs\news\post106123165.jpg" />
+    <Content Include="Content\assets\imgs\news\post1064839935.png" />
+    <Content Include="Content\assets\imgs\news\post1360584691.jpg" />
+    <Content Include="Content\assets\imgs\news\post1515005195.jpg" />
+    <Content Include="Content\assets\imgs\news\post1671986613.jpg" />
+    <Content Include="Content\assets\imgs\news\post1901249860.jpg" />
+    <Content Include="Content\assets\imgs\news\post233598225.jpg" />
+    <Content Include="Content\assets\imgs\news\post333878771.jpg" />
+    <Content Include="Content\assets\imgs\news\post43615125.jpg" />
+    <Content Include="Content\assets\imgs\news\post505675705.jpg" />
+    <Content Include="Content\assets\imgs\news\post609157794.jpg" />
+    <Content Include="Content\assets\imgs\news\post628943642.jpg" />
+    <Content Include="Content\assets\imgs\news\post645095200.jpg" />
+    <Content Include="Content\assets\imgs\news\post730123310.jpg" />
+    <Content Include="Content\assets\imgs\news\post78617929.jpg" />
+    <Content Include="Content\assets\imgs\news\post80007295.jpg" />
+    <Content Include="Content\assets\imgs\news\post805882150.jpg" />
+    <Content Include="Content\assets\imgs\news\post899222337.jpg" />
+    <Content Include="Content\assets\imgs\news\thumb-1.jpg" />
+    <Content Include="Content\assets\imgs\news\thumb-11.jpg" />
+    <Content Include="Content\assets\imgs\news\thumb-16.jpg" />
+    <Content Include="Content\assets\imgs\news\thumb-17.jpg" />
+    <Content Include="Content\assets\imgs\news\thumb-18.jpg" />
+    <Content Include="Content\assets\imgs\news\thumb-19.jpg" />
+    <Content Include="Content\assets\imgs\news\thumb-2.jpg" />
+    <Content Include="Content\assets\imgs\news\thumb-3.jpg" />
+    <Content Include="Content\assets\imgs\news\thumb-4.jpg" />
+    <Content Include="Content\assets\imgs\news\thumb-5.jpg" />
+    <Content Include="Content\assets\imgs\news\thumb-6.jpg" />
+    <Content Include="Content\assets\imgs\news\thumb-7.jpg" />
+    <Content Include="Content\assets\imgs\news\thumb-8.jpg" />
+    <Content Include="Content\assets\imgs\news\thumb-9.jpg" />
+    <Content Include="Content\assets\imgs\theme\favicon.png" />
+    <Content Include="Content\assets\imgs\theme\logo.png" />
+    <Content Include="Content\assets\imgs\theme\page-not-found.png" />
+    <Content Include="Content\assets\js\main.js" />
+    <Content Include="Content\assets\js\vendor\bootstrap.min.js" />
+    <Content Include="Content\assets\js\vendor\imagesloaded.pkgd.min.js" />
+    <Content Include="Content\assets\js\vendor\jquery-1.12.4.min.js" />
+    <Content Include="Content\assets\js\vendor\jquery.magnific-popup.js" />
+    <Content Include="Content\assets\js\vendor\jquery.nice-select.min.js" />
+    <Content Include="Content\assets\js\vendor\jquery.scrollUp.min.js" />
+    <Content Include="Content\assets\js\vendor\jquery.slicknav.js" />
+    <Content Include="Content\assets\js\vendor\jquery.sticky.js" />
+    <Content Include="Content\assets\js\vendor\jquery.theia.sticky.js" />
+    <Content Include="Content\assets\js\vendor\jquery.ticker.js" />
+    <Content Include="Content\assets\js\vendor\jquery.vticker-min.js" />
+    <Content Include="Content\assets\js\vendor\masonry.pkgd.min.js" />
+    <Content Include="Content\assets\js\vendor\modernizr-3.5.0.min.js" />
+    <Content Include="Content\assets\js\vendor\perfect-scrollbar.js" />
+    <Content Include="Content\assets\js\vendor\popper.min.js" />
+    <Content Include="Content\assets\js\vendor\slick.min.js" />
+    <Content Include="Content\assets\js\vendor\waypoints.min.js" />
+    <Content Include="Content\assets\js\vendor\wow.min.js" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
@@ -708,6 +832,13 @@
     <Content Include="Content\ckeditor\samples\toolbarconfigurator\font\fontello.woff" />
     <Content Include="Content\ckeditor\samples\toolbarconfigurator\lib\codemirror\LICENSE" />
     <Content Include="Content\ckeditor\skins\moono-lisa\readme.md" />
+    <Content Include="Content\assets\css\vendor\fonts\ElegantIcons-1.eot" />
+    <Content Include="Content\assets\css\vendor\fonts\ElegantIcons.eot" />
+    <Content Include="Content\assets\css\vendor\fonts\ElegantIcons.ttf" />
+    <Content Include="Content\assets\css\vendor\fonts\ElegantIcons.woff" />
+    <Content Include="Content\assets\imgs\637722413695232638" />
+    <Content Include="Content\assets\imgs\637722414740073396" />
+    <Content Include="Content\assets\imgs\dsdsdsds" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -739,6 +870,11 @@
     <Content Include="Views\AdminModules\Menu.cshtml" />
     <Content Include="Views\AdminAuthentication\Login.cshtml" />
     <Content Include="Views\AdminHome\Index.cshtml" />
+    <Content Include="Views\Modules\Header.cshtml" />
+    <Content Include="Views\Modules\Footer.cshtml" />
+    <Content Include="Views\Authentication\Login.cshtml" />
+    <Content Include="Views\Authentication\Register.cshtml" />
+    <Content Include="Views\Course\Detail.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -757,8 +893,8 @@
     <Content Include="Scripts\jquery-3.4.1.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202210121610164_new.resx">
-      <DependentUpon>202210121610164_new.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202210271605251_new-a.resx">
+      <DependentUpon>202210271605251_new-a.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

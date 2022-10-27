@@ -81,5 +81,19 @@ namespace ToeicAspMVC.Daos
             }
             return false;
         }
+
+        public bool checkEmailExist(string email)
+        {
+            var objUser = myDb.users.Where(u => u.email == email).FirstOrDefault();
+            if (objUser != null)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
     }
 }

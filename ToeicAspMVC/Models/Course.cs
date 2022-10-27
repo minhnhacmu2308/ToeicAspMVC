@@ -23,6 +23,8 @@ namespace ToeicAspMVC.Models
 
         public string description { get; set; }
 
+        public int view { get; set; }
+
         public int status { get; set; }
 
         public string created { get; set; }

@@ -81,5 +81,5 @@ D:\Project Asp.Net\ToeicAspMVC\ToeicAspMVC\obj\Debug\ToeicAspMVC.csproj.CoreComp
 D:\Project Asp.Net\ToeicAspMVC\ToeicAspMVC\obj\Debug\ToeicAspMVC.csproj.CopyComplete
 D:\Project Asp.Net\ToeicAspMVC\ToeicAspMVC\obj\Debug\ToeicAspMVC.dll
 D:\Project Asp.Net\ToeicAspMVC\ToeicAspMVC\obj\Debug\ToeicAspMVC.pdb
-D:\Project Asp.Net\ToeicAspMVC\ToeicAspMVC\obj\Debug\ToeicAspMVC.Migrations._new.resources
+D:\Project Asp.Net\ToeicAspMVC\ToeicAspMVC\obj\Debug\ToeicAspMVC.Migrations.newa.resources
 D:\Project Asp.Net\ToeicAspMVC\ToeicAspMVC\obj\Debug\ToeicAspMVC.csproj.GenerateResource.cache
