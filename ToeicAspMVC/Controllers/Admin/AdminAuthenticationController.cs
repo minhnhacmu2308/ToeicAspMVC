@@ -36,7 +36,7 @@ namespace ToeicAspMVC.Controllers.Admin
             {
                 var userInformation = userDao.getUserByEmail(user.email);
 
-                if (userInformation.idRole == 3)
+                if (userInformation.idRole != 1)
                 {
                     ViewBag.mess = "Bạn không có quyền truy cập vào trang quản trị";
                     return View("Login");

@@ -128,8 +128,11 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\Admin\AdminAuthenticationController.cs" />
+    <Compile Include="Controllers\Admin\AdminCourseController.cs" />
+    <Compile Include="Controllers\Admin\AdminDistanceController.cs" />
     <Compile Include="Controllers\Admin\AdminHomeController.cs" />
     <Compile Include="Controllers\Admin\AdminModulesController.cs" />
+    <Compile Include="Controllers\Admin\AdminProductController.cs" />
     <Compile Include="Controllers\AuthenticationController.cs" />
     <Compile Include="Controllers\CourseController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -146,9 +149,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202210271605251_new-a.cs" />
-    <Compile Include="Migrations\202210271605251_new-a.designer.cs">
-      <DependentUpon>202210271605251_new-a.cs</DependentUpon>
+    <Compile Include="Migrations\202211131529380_new.cs" />
+    <Compile Include="Migrations\202211131529380_new.designer.cs">
+      <DependentUpon>202211131529380_new.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Comment.cs" />
@@ -878,6 +881,10 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Content\images\" />
+    <Folder Include="Views\AdminCourse\" />
+    <Folder Include="Views\AdminDistance\" />
+    <Folder Include="Views\AdminProduct\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
@@ -893,8 +900,8 @@
     <Content Include="Scripts\jquery-3.4.1.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202210271605251_new-a.resx">
-      <DependentUpon>202210271605251_new-a.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202211131529380_new.resx">
+      <DependentUpon>202211131529380_new.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

@@ -35,5 +35,36 @@ namespace ToeicAspMVC.Daos
             obj.view = obj.view + 1;
             myDb.SaveChanges();
         }
+
+        public List<Course> GetAll()
+        {
+            return myDb.courses.ToList();
+        }
+
+        public Course GetDetail(int id)
+        {
+            return myDb.courses.FirstOrDefault(x => x.idCourse == id);
+        }
+
+        public void Add(Course course)
+        {
+            myDb.courses.Add(course);
+            myDb.SaveChanges();
+        }
+
+        public void Update(Course course)
+        {
+            var obj = myDb.courses.FirstOrDefault(x => x.idCourse == course.idCourse);
+            obj.name = course.name;
+            obj.image = course.image;
+            obj.description = course.description;
+            myDb.SaveChanges();
+        }
+        public void Delete(int id)
+        {
+            var obj = myDb.courses.FirstOrDefault(x => x.idCourse == id);
+            myDb.courses.Remove(obj);
+            myDb.SaveChanges();
+        }
     }
 }
