@@ -1,0 +1,224 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<main>
+    <div class="container-fluid px-4">
+        <h4 class="mt-1">Danh sách sản phẩm quà tặng</h4>
+
+        <div class="card mb-4">
+            <div class="card-header">
+                @if (ViewBag.Msg != null)
+                {
+                    if (ViewBag.Msg == "1")
+                    {
+                        <div class="alert alert-success">
+                            <strong>Thành công</strong>
+                        </div>
+                    }
+                }
+                <button type="button" class="btn btn-success" data-bs-toggle="modal"
+                        data-bs-target="#exampleModalAdd">
+                    Thêm mới
+                </button>
+            </div>
+
+            <div class="card-body">
+                <table id="datatablesSimple">
+                    <thead style="color:#0d6efd ">
+                        <tr style="background-color: darkgrey">
+                            <th>STT</th>
+                            <th>Tên sản phẩm</th>
+                            <th>Ảnh</th>
+                            <th>Điểm đổi thưởng</th>
+                            <th>Thao tác</th>
+                        </tr>
+                    </thead>
+                    <tfoot>
+                        <tr>
+                        </tr>
+                    </tfoot>
+                    <tbody>
+                        @{ var stt = 1;}
+                        <input type="hidden" value="@ViewBag.List.Count" id="dodai" />
+                        @foreach (var item in ViewBag.List)
+                        {
+                            <tr>
+                                <td style="width:10px">@stt</td>
+                                <td>
+                                    @item.name
+                                </td>
+                                <td>
+                                    <img style="width: 200px !important;height: 150px !important;" src="~/Content/images/@item.image"
+                                         class="img-fluid">
+                                </td>
+                                <td>
+                                    @item.point
+                                </td>
+                                <td>
+                                    @{
+                                        var idEx1 = "exampleModalLabel" + item.idProduct;
+                                        var idModelDel = "exampleModalDel" + item.idProduct;
+                                        var edit = "comment" + stt;
+                                    }
+                                    <button style="width:100px" type="button" class="btn btn-primary" data-bs-toggle="modal"
+                                            data-bs-target="#@idEx1">
+                                        Sửa
+                                    </button>
+                                    <button type="button" data-bs-toggle="modal" data-bs-target="#@idModelDel" style="width:100px" class="btn btn-danger"> Xóa</button>
+                                </td>
+                                <div class="modal fade" id="@idModelDel" tabindex="-1"
+                                     aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="exampleModalLabel">Bạn chắc chắn muốn xóa ?</h5>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                        aria-label="Close"></button>
+                                            </div>
+
+                                            <div class="modal-body">
+                                                Sản phẩm quà tặng : @item.name
+                                                <form action="/AdminProduct/Delete" method="post">
+                                                    <input type="hidden" class="form-control" id="id" name="idProduct" value="@item.idProduct">
+                                                    <div class="modal-footer" style="margin-top: 20px">
+                                                        <button style="width:100px" type="button" class="btn btn-secondary"
+                                                                data-bs-dismiss="modal">
+                                                            Đóng
+                                                        </button>
+                                                        <button style="width:100px" type="submit" class="btn btn-danger"> Xóa</button>
+                                                    </div>
+                                                </form>
+
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- Modal Update-->
+                                <div class="modal fade" id="@idEx1" tabindex="-1"
+                                     aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog modal-lg">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="exampleModalLabel">Cập nhập</h5>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                        aria-label="Close"></button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <form method="POST" action="/AdminProduct/Update" class="register-form" id="register-form" enctype="multipart/form-data">
+                                                    <input type="hidden" class="form-control" id="id" name="idProduct" value="@item.idProduct">
+
+                                                    <div class="col">
+                                                        <div class="row">
+                                                            <div class="col-12 mb-3">
+                                                                <label for="category-film"
+                                                                       class="col-form-label">Tên sản phẩm:</label>
+                                                                <input type="text" class="form-control" id="category-film" name="name" required value="@item.name">
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col-12 mb-3">
+                                                                <label for="category-film"
+                                                                       class="col-form-label">Ảnh:</label><br />
+                                                                <input type="file" name="file" class="form-control-file"
+                                                                       id="exampleFormControlFile1">
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="row">
+                                                            <div class="col-12 mb-3">
+                                                                <label for="category-film"
+                                                                       class="col-form-label">Điểm đổi thưởng:</label>
+                                                                <input type="number" class="form-control" id="category-film" name="point" required value="@item.point">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-secondary"
+                                                                data-bs-dismiss="modal">
+                                                            Đóng
+                                                        </button>
+                                                        <button type="submit" class="btn btn-primary">Lưu</button>
+                                                    </div>
+                                                </form>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </tr>
+                            stt++;
+                        }
+                        <div class="modal fade" id="exampleModalAdd" tabindex="-1"
+                             aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog modal-lg">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel">Thêm mới</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <form method="POST" action="/AdminProduct/Add" class="register-form" id="register-form" enctype="multipart/form-data">
+                                            <div class="col">
+                                                <div class="row">
+                                                    <div class="col-12 mb-3">
+                                                        <label for="category-film"
+                                                               class="col-form-label">Tên sản phẩm:</label>
+                                                        <input type="text" class="form-control" id="category-film" name="name" required>
+                                                    </div>
+
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-12 mb-3">
+                                                        <label for="category-film"
+                                                               class="col-form-label">Ảnh:</label><br>
+                                                        <input type="file" name="file" class="form-control-file"
+                                                               id="exampleFormControlFile1" required>
+                                                    </div>
+                                                </div>
+
+                                                <div class="row">
+                                                    <div class="col-12 mb-3">
+                                                        <label for="category-film"
+                                                               class="col-form-label">Điểm đổi thưởng:</label>
+                                                        <input type="number" class="form-control" id="category-film" name="point" required>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary"
+                                                        data-bs-dismiss="modal">
+                                                    Đóng
+                                                </button>
+                                                <button type="submit" class="btn btn-primary">Lưu </button>
+                                            </div>
+                                        </form>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <script>
+
+            CKEDITOR.replace("editor");
+
+    </script>
+    <script>
+            var dodai = document.getElementById("dodai").value;
+
+            for (var i = 1; i <= dodai; i++) {
+                var name = "comment" + i
+                CKEDITOR.replace(name);
+            }
+    </script>
+</main>
+

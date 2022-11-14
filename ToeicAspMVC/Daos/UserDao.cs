@@ -95,5 +95,39 @@ namespace ToeicAspMVC.Daos
             }
         }
 
+        public List<User> GetAll()
+        {
+            return myDb.users.OrderBy(x => x.idRole).ToList();
+        }
+
+        public void Update(User user)
+        {
+            var obj = myDb.users.FirstOrDefault(x => x.idUser == user.idUser);
+            obj.fullName = user.fullName;
+            obj.phoneNumber = user.phoneNumber;
+            obj.password = user.password;
+            myDb.SaveChanges();
+        }
+
+        public List<Document> GetDocumentByUser(int idUser)
+        {
+            return myDb.documents.Where(x => x.idUser == idUser).ToList();
+        }
+
+        public List<Post> GetPostByUser(int idUser)
+        {
+            return myDb.posts.Where(x => x.idUser == idUser).ToList();
+        }
+
+        public List<Comment> GetCommentByUser(int idUser)
+        {
+            return myDb.comments.Where(x => x.idUser == idUser).ToList();
+        }
+
+        public List<MyTarget> GetMyTargetByUser(int idUser)
+        {
+            return myDb.myTargets.Where(x => x.idUser == idUser).ToList();
+        }
+
     }
 }

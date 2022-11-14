@@ -1,0 +1,144 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<main>
+    <div class="container-fluid px-4">
+        <h4 class="mt-1">Danh sách bài đăng</h4>
+
+        <div class="card mb-4">
+            <div class="card-header">
+                @if (ViewBag.Msg != null)
+                {
+                    if (ViewBag.Msg == "1")
+                    {
+                        <div class="alert alert-success">
+                            <strong>Thành công</strong>
+                        </div>
+                    }
+                }
+            </div>
+
+            <div class="card-body">
+                <table id="datatablesSimple">
+                    <thead style="color:#0d6efd ">
+                        <tr style="background-color: darkgrey">
+                            <th>STT</th>
+                            <th>Tiêu đề</th>
+                            <th>Ảnh</th>
+                            <th>Nội dung</th>
+                            <th>Đăng bởi</th>
+                            <th>Tình trạng</th>
+                            <th>Thao tác</th>
+                        </tr>
+                    </thead>
+                    <tfoot>
+                        <tr>
+                        </tr>
+                    </tfoot>
+                    <tbody>
+                        @{ var stt = 1;}
+                        <input type="hidden" value="@ViewBag.List.Count" id="dodai" />
+                        @foreach (var item in ViewBag.List)
+                        {
+                            var nameModelDes = "exampleModalDes" + item.idPost;
+                    <tr>
+                        <td style="width:10px">@stt</td>
+                        <td>
+                            @item.title
+                        </td>
+                        <td>
+                            <img style="width: 200px !important;height: 150px !important;" src="~/Content/images/@item.image"
+                                 class="img-fluid">
+                        </td>
+                        <td>
+                            <a href="" data-bs-toggle="modal" data-bs-target="#@nameModelDes">Xem</a>
+                        </td>
+                        <td>
+                            @item.User.fullName
+                        </td>
+                        @{ var tinhtrang = item.status == 1 ? "Đã duyệt" : "Chưa duyệt";}
+                        <td>
+                            @tinhtrang
+                        </td>
+                        <td>
+                            @{
+                                var idModelDel = "exampleModalDel" + item.idPost;
+                                var edit = "comment" + stt;
+                            }
+                            @if (item.status == 0)
+                            {
+                                <button type="button" data-bs-toggle="modal" data-bs-target="#@idModelDel" style="width:100px" class="btn btn-warning"> Duyệt</button>
+                            }
+                        </td>
+                        <div class="modal fade" id="@idModelDel" tabindex="-1"
+                             aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel">Bạn chắc chắn phê duyệt ?</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                aria-label="Close"></button>
+                                    </div>
+
+                                    <div class="modal-body">
+                                        Bài đăng : @item.title
+                                        <form action="/AdminPost/Approved" method="post">
+                                            <input type="hidden" class="form-control" id="id" name="idPost" value="@item.idPost">
+                                            <div class="modal-footer" style="margin-top: 20px">
+                                                <button style="width:100px" type="button" class="btn btn-secondary"
+                                                        data-bs-dismiss="modal">
+                                                    Đóng
+                                                </button>
+                                                <button style="width:100px" type="submit" class="btn btn-warning"> Phê duyệt</button>
+                                            </div>
+                                        </form>
+
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Modal Descrip-->
+                        <div class="modal fade" id="@nameModelDes" tabindex="-1"
+                             aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog modal-xl">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel">@item.title</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <p>@Html.Raw(item.content)</p>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </tr>
+                            stt++;
+                        }
+                        
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <script>
+
+            CKEDITOR.replace("editor");
+
+    </script>
+    <script>
+            var dodai = document.getElementById("dodai").value;
+
+            for (var i = 1; i <= dodai; i++) {
+                var name = "comment" + i
+                CKEDITOR.replace(name);
+            }
+    </script>
+</main>
+
