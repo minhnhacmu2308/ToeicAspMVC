@@ -12,7 +12,11 @@ namespace ToeicAspMVC
         public static void RegisterRoutes(RouteCollection routes)
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
-
+            routes.MapRoute(
+            name: "Teacher Document",
+            url: "Document/List/{id}/{page}",
+            defaults: new { controller = "Document", action = "ListDocument", id = UrlParameter.Optional }
+           );
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",

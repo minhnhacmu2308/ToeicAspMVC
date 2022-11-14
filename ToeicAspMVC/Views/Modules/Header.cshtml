@@ -18,8 +18,21 @@
                             </a>
 
                             <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                                <a class="dropdown-item text-black ml-15 font-small " href="/Forum/AddPost">Đăng bài</a>
-                                <a class="dropdown-item text-black ml-15 font-small " href="/user/post/@userInfomatiom.idUser/1">Bài viết</a>
+                                @if (userInfomatiom.idRole == 2)
+                                {
+                                    <a class="dropdown-item text-black ml-15 font-small " href="/Document/Add">Đăng tài liệu tham khảo</a>
+                                    <a class="dropdown-item text-black ml-15 font-small " href="/Document/List/@userInfomatiom.idUser/1">Danh sách bài đăng</a>
+                                }
+                                else if (userInfomatiom.idRole == 3)
+                                {
+                                    <a class="dropdown-item text-black ml-15 font-small " href="/Forum/AddPost">Đăng bài</a>
+                                    <a class="dropdown-item text-black ml-15 font-small " href="/user/post/@userInfomatiom.idUser/1">Bài viết</a>
+                                }
+                                else
+                                {
+
+                                }
+
                             </div>
                         </div>
                         <a href="/Authentication/Logout" class="btn btn-radius bg-primary text-white ml-15 font-small box-shadow" style="width:100px">Đăng xuất</a>

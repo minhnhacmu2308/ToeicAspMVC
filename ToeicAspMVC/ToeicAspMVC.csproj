@@ -135,11 +135,13 @@
     <Compile Include="Controllers\Admin\AdminProductController.cs" />
     <Compile Include="Controllers\AuthenticationController.cs" />
     <Compile Include="Controllers\CourseController.cs" />
+    <Compile Include="Controllers\DocumentController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ModulesController.cs" />
     <Compile Include="Daos\CommentDao.cs" />
     <Compile Include="Daos\CourseDao.cs" />
     <Compile Include="Daos\DistanceDao.cs" />
+    <Compile Include="Daos\DocumentDao.cs" />
     <Compile Include="Daos\MyTargetDao.cs" />
     <Compile Include="Daos\PostDao.cs" />
     <Compile Include="Daos\ProductDao.cs" />
@@ -878,6 +880,9 @@
     <Content Include="Views\Authentication\Login.cshtml" />
     <Content Include="Views\Authentication\Register.cshtml" />
     <Content Include="Views\Course\Detail.cshtml" />
+    <Content Include="Views\Document\Add.cshtml" />
+    <Content Include="Views\Document\ListDocument.cshtml" />
+    <Content Include="Views\Document\Detail.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
