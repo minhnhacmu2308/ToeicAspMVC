@@ -106,6 +106,7 @@ namespace ToeicAspMVC.Daos
             obj.fullName = user.fullName;
             obj.phoneNumber = user.phoneNumber;
             obj.password = user.password;
+            obj.idRole = user.idRole;
             myDb.SaveChanges();
         }
 
@@ -127,6 +128,11 @@ namespace ToeicAspMVC.Daos
         public List<MyTarget> GetMyTargetByUser(int idUser)
         {
             return myDb.myTargets.Where(x => x.idUser == idUser).ToList();
+        }
+
+        public List<Role> GetRole()
+        {
+            return myDb.roles.ToList();
         }
 
     }

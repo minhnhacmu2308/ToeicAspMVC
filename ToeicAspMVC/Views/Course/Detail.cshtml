@@ -14,35 +14,36 @@
             <!--end single header-->
             @if (post.image == "")
             {
-                <span></span>
-            }
-            else
-            {
-                <figure class="image mb-30 m-auto text-center border-radius-10">
-                    @*<img class="border-radius-10" src="/Content/assets/imgs/@post.image" alt="post-title"*@
-                    <img class="border-radius-10" src="@post.image" alt="post-title">
-                </figure>
-            }
+        <figure class="image mb-30 m-auto text-center border-radius-10">
+            <img class="img-hover-slide" style="width: 100%; height: 100%; object-fit: cover;margin-top:20px" src="https://prices.vn/photos/blog/1648291147-khoa-hoc-toeic.jpg" />
+        </figure>
+               
+                }
+                else
+                {
+                    <figure class="image mb-30 m-auto text-center border-radius-10">
+                        <img class="img-hover-slide" style="width: 100%; height: 100%; object-fit: cover;margin-top:20px" src="~/Content/images/@post.image" />
+                    </figure>
+                }
             <!--figure-->
-        <article class="entry-wraper mb-50">
+            <article class="entry-wraper mb-50">
 
-            @Html.Raw(post.description)
-            <p>Lượt xem: @post.view</p>
-            <p>Ngày tạo: @post.created</p>
-            <div class="single-social-share clearfix wow fadeIn animated">
-                <ul class="header-social-network d-inline-block list-inline float-md-right mt-md-0 mt-4">
-                    <li class="list-inline-item text-muted"><span>Share this: </span></li>
-                    <li class="list-inline-item"><a class="social-icon fb text-xs-center" target="_blank" href="#"><i class="elegant-icon social_facebook"></i></a></li>
-                    <li class="list-inline-item"><a class="social-icon tw text-xs-center" target="_blank" href="#"><i class="elegant-icon social_twitter "></i></a></li>
-                    <li class="list-inline-item"><a class="social-icon pt text-xs-center" target="_blank" href="#"><i class="elegant-icon social_pinterest "></i></a></li>
-                </ul>
-            </div>
+                @Html.Raw(post.description)
+                <br><p>Lượt xem: @post.view  || Ngày tạo: @post.created</p>
+                <div class="single-social-share clearfix wow fadeIn animated">
+                    <ul class="header-social-network d-inline-block list-inline float-md-right mt-md-0 mt-4">
+                        <li class="list-inline-item text-muted"><span>Share this: </span></li>
+                        <li class="list-inline-item"><a class="social-icon fb text-xs-center" target="_blank" href="#"><i class="elegant-icon social_facebook"></i></a></li>
+                        <li class="list-inline-item"><a class="social-icon tw text-xs-center" target="_blank" href="#"><i class="elegant-icon social_twitter "></i></a></li>
+                        <li class="list-inline-item"><a class="social-icon pt text-xs-center" target="_blank" href="#"><i class="elegant-icon social_pinterest "></i></a></li>
+                    </ul>
+                </div>
 
 
-            <!--comment form-->
-            <!--related posts-->
+                <!--comment form-->
+                <!--related posts-->
 
-        </article>
+            </article>
         </div>
         <!--container-->
 </main>

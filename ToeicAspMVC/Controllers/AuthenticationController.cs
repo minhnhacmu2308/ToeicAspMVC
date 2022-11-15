@@ -52,14 +52,14 @@ namespace ToeicAspMVC.Controllers
                 }
                 else
                 {
-                    string passwordMd5 = userDao.md5(user.password);
+                    string passwordMd5 = user.password;
                     User userObj = new User();
                     userObj.email = user.email;
                     userObj.password = passwordMd5;
                     userObj.fullName = user.fullName;
                     userObj.phoneNumber = user.phoneNumber;
                     userObj.status = status;
-                    userObj.idRole = 2;
+                    userObj.idRole = 3;
                     userDao.Add(userObj);
                     return RedirectToAction("Login");
                 }
@@ -71,7 +71,7 @@ namespace ToeicAspMVC.Controllers
         {
             var email = form["email"];
             var password = form["password"];
-            string passwordMd5 = userDao.md5(password);
+            string passwordMd5 = password;
             if (string.IsNullOrEmpty(email) || string.IsNullOrEmpty(password))
             {
                 ViewBag.message = "Cần điền đầy đủ thông tin";

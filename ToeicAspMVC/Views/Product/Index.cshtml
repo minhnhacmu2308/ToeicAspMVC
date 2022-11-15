@@ -1,0 +1,55 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<main>
+    <div class="featured-1">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 align-self-center">
+                    <h3 class="mb-20"> Chào mừng đến với website hỗ trợ luyện thi Toeic</h3>
+                    <h5 class="text-muted">Nơi có thể thảo luận, trao đổi thông tin, chia sẻ hiểu biết, kinh nghiệm về tiếng anh</h5>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="hot-tags pt-30 pb-30 font-small align-self-center">
+            <div class="widget-header-3">
+                <div class="row align-self-center">
+                    <div class="col-md-4 align-self-center">
+                        <h5 class="widget-title">Danh sách sản phẩm quà tặng</h5>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <div class="loop-grid mb-30">
+            <div class="row">
+                @foreach (var item1 in ViewBag.List)
+                {
+                    <article class="col-lg-4 col-md-6 mb-30 wow fadeInUp animated" data-wow-delay="0.2s">
+                        <div class="post-card-1 border-radius-10 hover-up">
+                            <div class="thumb-overlay img-hover-slide position-relative" style="background-image: url(/Content/images/@item1.image)">
+                                @* <div class="thumb-overlay img-hover-slide position-relative" style="background-image: url(/Content/assets/imgs/@item.image)">*@
+                                <a class="img-link" href="/Product/Detail/@item1.idProduct"></a>
+                                <span class="top-right-icon bg-success"><i class="elegant-icon icon_camera_alt"></i></span>
+                            </div>
+                            <div class="post-content p-30" style="height : 100px !important">
+                                <div class="d-flex post-card-content">
+                                    <h5 class="post-title mb-20 font-weight-900">
+                                        <a href="/Course/Detail/@item1.idCourse">@item1.name</a>
+                                    </h5>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+                }
+            </div>
+        </div>
+    </div>
+
+</main>
+

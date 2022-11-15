@@ -15,6 +15,7 @@ namespace ToeicAspMVC.Controllers.Admin
         {
             ViewBag.Msg = msg;
             ViewBag.List = userDao.GetAll();
+            ViewBag.Role = userDao.GetRole();
             return View();
         }
         [HttpPost]

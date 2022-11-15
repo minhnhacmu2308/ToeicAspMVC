@@ -26,7 +26,7 @@
             <div class="widget-header-3">
                 <div class="row align-self-center">
                     <div class="col-md-4 align-self-center">
-                        <h5 class="widget-title">Khóa học nổi bật</h5>
+                        <h5 class="widget-title">Danh sách khóa học</h5>
                     </div>
 
                 </div>
@@ -34,17 +34,17 @@
         </div>
         <div class="loop-grid mb-30">
             <div class="row">
-                <div class="col-lg-8 mb-30">
+                @*<div class="col-lg-8 mb-30">
                     <div class="carausel-post-1 hover-up border-radius-10 overflow-hidden transition-normal position-relative wow fadeInUp animated">
                         <div class="arrow-cover"></div>
                         <div class="slide-fade">
-                            <!--bài viết mới nhất-->
+                            
 
                             @foreach (var item in ViewBag.ListTopSix)
                             {
                                 <div class="position-relative post-thumb">
-                                    <div class="thumb-overlay img-hover-slide position-relative" style="background-image: url(@item.image)">
-                                        @* <div class="thumb-overlay img-hover-slide position-relative" style="background-image: url(/Content/assets/imgs/@item.image)">*@
+                                    <div class="thumb-overlay img-hover-slide position-relative" style="background-image: url(/Content/images/@item.image)">
+                                         <div class="thumb-overlay img-hover-slide position-relative" style="background-image: url(/Content/assets/imgs/@item.image)">
                                         <a class="img-link" href="/Course/Detail/@item.idCourse"></a>
                                         <span class="top-left-icon bg-warning"><i class="elegant-icon icon_star_alt"></i></span>
                                         <div class="post-content-overlay text-white ml-30 mr-30 pb-30">
@@ -55,42 +55,33 @@
                                                 </a>
                                                 <p>Lượt xem: @item.view</p>
                                             </h3>
-                                          
+
                                         </div>
                                     </div>
                                 </div>
                             }
 
-                            <!--bài viết mới nhất-->
+                           
 
                         </div>
                     </div>
-                </div>
+                </div>*@
                 <!--bài viết -->
                 @foreach (var item1 in ViewBag.Course)
                 {
                     <article class="col-lg-4 col-md-6 mb-30 wow fadeInUp animated" data-wow-delay="0.2s">
                         <div class="post-card-1 border-radius-10 hover-up">
-                            <div class="thumb-overlay img-hover-slide position-relative" style="background-image: url(@item1.image)">
+                            <div class="thumb-overlay img-hover-slide position-relative" style="background-image: url(/Content/images/@item1.image)">
                                 @* <div class="thumb-overlay img-hover-slide position-relative" style="background-image: url(/Content/assets/imgs/@item.image)">*@
                                 <a class="img-link" href="/Course/Detail/@item1.idCourse"></a>
                                 <span class="top-right-icon bg-success"><i class="elegant-icon icon_camera_alt"></i></span>
-                                <ul class="social-share">
-                                    <li><a href="#"><i class="elegant-icon social_share"></i></a></li>
-                                    <li><a class="fb" href="#" title="Share on Facebook" target="_blank"><i class="elegant-icon social_facebook"></i></a></li>
-                                    <li><a class="tw" href="#" target="_blank" title="Tweet now"><i class="elegant-icon social_twitter"></i></a></li>
-                                    <li><a class="pt" href="#" target="_blank" title="Pin it"><i class="elegant-icon social_pinterest"></i></a></li>
-                                </ul>
                             </div>
-                            <div class="post-content p-30">
-
+                            <div class="post-content p-30" style="height : 100px !important">
                                 <div class="d-flex post-card-content">
                                     <h5 class="post-title mb-20 font-weight-900">
                                         <a href="/Course/Detail/@item1.idCourse">@item1.name</a>
-                                        <p>Lượt xem: @item1.view</p>
                                     </h5>
                                 </div>
-                              
                             </div>
                         </div>
                     </article>

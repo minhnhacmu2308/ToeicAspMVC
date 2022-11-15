@@ -30,7 +30,7 @@ namespace ToeicAspMVC.Controllers
         {
             var file = Request.Files["file"];
             string reName = DateTime.Now.Ticks.ToString() + file.FileName;
-            file.SaveAs(Server.MapPath("~/Content/assets/imgs/" + reName));
+            file.SaveAs(Server.MapPath("~/Content/images/" + reName));
             document.created = DateTime.Now.ToString();
             document.image = reName;
             document.status = 0;
