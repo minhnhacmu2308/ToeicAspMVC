@@ -23,7 +23,7 @@ namespace ToeicAspMVC.Controllers.Admin
         {
             var file = Request.Files["file"];
             string reName = DateTime.Now.Ticks.ToString() + file.FileName;
-            file.SaveAs(Server.MapPath("~/Content/images/" + reName));
+            file.SaveAs(Server.MapPath("~/Content/assets/imgs/" + reName));
             product.image = reName;
             product.status = 1;
             product.created = DateTime.Now.ToString();
@@ -44,7 +44,7 @@ namespace ToeicAspMVC.Controllers.Admin
             else
             {
                 reName = DateTime.Now.Ticks.ToString() + file.FileName;
-                file.SaveAs(Server.MapPath("~/Content/images/" + reName));
+                file.SaveAs(Server.MapPath("~/Content/assets/imgs/" + reName));
             }
             product.image = reName;
             productDao.Update(product);

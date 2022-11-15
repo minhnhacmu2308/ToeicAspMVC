@@ -14,19 +14,21 @@
                     {
                         <div class="dropdown show">
                             <a class="btn btn-radius bg-primary text-white ml-15 font-small box-shadow dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                @userInfomatiom.email
+                                @userInfomatiom.fullName
                             </a>
 
                             <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
                                 @if (userInfomatiom.idRole == 2)
                                 {
                                     <a class="dropdown-item text-black ml-15 font-small " href="/Document/Add">Đăng tài liệu tham khảo</a>
-                                    <a class="dropdown-item text-black ml-15 font-small " href="/Document/List/@userInfomatiom.idUser/1">Danh sách bài đăng</a>
+                                    <a class="dropdown-item text-black ml-15 font-small " href="/Document/List/@userInfomatiom.idUser/1">Danh sách tài liệu</a>
                                 }
                                 else if (userInfomatiom.idRole == 3)
                                 {
-                                    <a class="dropdown-item text-black ml-15 font-small " href="/Forum/AddPost">Đăng bài</a>
-                                    <a class="dropdown-item text-black ml-15 font-small " href="/user/post/@userInfomatiom.idUser/1">Bài viết</a>
+                                    <a class="dropdown-item text-black ml-15 font-small " href="/Post/Add">Đăng bài</a>
+                                    <a class="dropdown-item text-black ml-15 font-small " href="/Post/List/@userInfomatiom.idUser/1">Danh sách bài đăng</a>
+                                    <a class="dropdown-item text-black ml-15 font-small " href="#">Test đầu vào</a>
+                                    <a class="dropdown-item text-black ml-15 font-small " href="#">Mục tiêu cá nhân</a>
                                 }
                                 else
                                 {
@@ -57,14 +59,14 @@
 
                         <li> <a href="/Home/Index"><i class="elegant-icon icon_house_alt mr-5"></i>Trang chủ</a> </li>
 
-                        <li> <a href="/Forum/Index/1"><i class="elegant-icon social_twitter_circle mr-5"></i>Diễn đàn</a> </li>
+                        <li> <a href="/Post/Index"><i class="elegant-icon social_twitter_circle mr-5"></i>Diễn đàn</a> </li>
 
-                        <li> <a href="/Forum/Index/1"><i class="elegant-icon social_googledrive_square mr-5"></i>Tài liệu</a> </li>
+                        <li> <a href="/Document/Index"><i class="elegant-icon social_googledrive_square mr-5"></i>Tài liệu</a> </li>
 
-                        <li> <a href="/Forum/Index/1"><i class="elegant-icon icon_gift_alt mr-5"></i>Sản phẩm quà tặng</a> </li>
+                        <li> <a href="/Product/Index"><i class="elegant-icon icon_gift_alt mr-5"></i>Sản phẩm quà tặng</a> </li>
                     </ul>
                     <!--Mobile menu-->
-                    <ul id="mobile-menu" class="d-block d-lg-none text-muted">
+                    @*<ul id="mobile-menu" class="d-block d-lg-none text-muted">
                         <li class="menu-item-has-children">
                             <a href="index.html.htm">Home</a>
                             <ul class="sub-menu text-muted font-small">
@@ -104,7 +106,7 @@
                                 <li><a href="single-4.html.htm">With sidebar</a></li>
                             </ul>
                         </li>
-                    </ul>
+                    </ul>*@
                 </nav>
             </div>
             <div class="float-right header-tools text-muted font-small">

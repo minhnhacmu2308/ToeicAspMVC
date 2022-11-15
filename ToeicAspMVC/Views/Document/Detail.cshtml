@@ -30,7 +30,7 @@
                     </ul>
                 </div>
             </div>
-            <img class="img-hover-slide" style="width: 100%; height: 100%; object-fit: cover;margin-top:20px" src="~/Content/images/@post.image" />
+            <img class="img-hover-slide" style="width: 100%; height: 100%; object-fit: cover;margin-top:20px" src="~/Content/assets/imgs/@post.image" />
         </div>
 
         <!--end single header-->
@@ -39,59 +39,10 @@
 
             @Html.Raw(post.content)
 
-            <div class="single-social-share clearfix wow fadeIn animated">
-                <div class="entry-meta meta-1 font-small color-grey float-left mt-10">
-                    <span class="hit-count mr-15"><i class="elegant-icon icon_comment_alt mr-5"></i>All comments</span>
-                </div>
-                <ul class="header-social-network d-inline-block list-inline float-md-right mt-md-0 mt-4">
-                </ul>
-            </div>
+            
             @{ var userInfomatiom = (ToeicAspMVC.Models.User)Session["User"]; }
-            <!--Comments-->
-            <div class="comments-area">
-                <div class="widget-header-2 position-relative mb-30">
-                    <h5 class="mt-5 mb-30">Comments</h5>
-                </div>
-
-            </div>
-            <script>
-                function onReply(id) {
-                    namePId = "p" + id;
-                    var nameId = "reply" + id;
-                    var name = document.getElementById(namePId).innerHTML
-                    if (name == "Reply") {
-                        document.getElementById(nameId).style.display = "block";
-                        document.getElementById(namePId).innerHTML = "Cancel"
-                    } else {
-                        document.getElementById(nameId).style.display = "none";
-                        document.getElementById(namePId).innerHTML = "Reply"
-                    }
-
-
-                }
-            </script>
-            <!--comment form-->
-            <div class="comment-form wow fadeIn animated">
-                <div class="widget-header-2 position-relative mb-30">
-                    <h5 class="mt-5 mb-30">Leave a Reply</h5>
-                </div>
-                <form class="form-contact comment_form" action="/Comment/PostComment" method="post" id="commentForm">
-                    <input type="hidden" name="id_post" value="@post.idDocument" />
-                    <input type="hidden" name="status" value="1" />
-                    <input type="hidden" name="parent" value="0" />
-                    <div class="row">
-                        <div class="col-12">
-                            <div class="form-group">
-                                <textarea required class="form-control w-100" name="text" id="comment" cols="30" rows="9" placeholder="Write Comment"></textarea>
-                            </div>
-                        </div>
-
-                    </div>
-                    <div class="form-group">
-                        <button type="submit" class="btn button button-contactForm">Post Comment</button>
-                    </div>
-                </form>
-            </div>
+            
+            
             <!--related posts-->
 
         </article>

@@ -23,7 +23,7 @@ namespace ToeicAspMVC.Daos
 
         public List<Document> GetDocumentList()
         {
-            return myDb.documents.ToList();
+            return myDb.documents.OrderByDescending(x => x.created).ToList();
         }
 
         public Document GetDocumentById(int id)

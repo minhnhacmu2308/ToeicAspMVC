@@ -8,14 +8,14 @@ using ToeicAspMVC.Models;
 
 namespace ToeicAspMVC.Controllers
 {
-    public class DocumentController : Controller
+    public class PostController : Controller
     {
-        DocumentDao documentDao = new DocumentDao();
+        PostDao postDao = new PostDao();
         UserDao userDao = new UserDao();
         // GET: Document
         public ActionResult Index()
         {
-            ViewBag.List = documentDao.GetDocumentList();
+            ViewBag.List = postDao.GetPostApprove();
             return View();
         }
 
@@ -27,34 +27,33 @@ namespace ToeicAspMVC.Controllers
         }
 
         [HttpPost, ValidateInput(false)]
-        public ActionResult Add(Document document)
+        public ActionResult Add(Post post)
         {
             var file = Request.Files["file"];
             string reName = DateTime.Now.Ticks.ToString() + file.FileName;
             file.SaveAs(Server.MapPath("~/Content/assets/imgs/" + reName));
-            document.created = DateTime.Now.ToString();
-            document.image = reName;
-            document.status = 0;
-            documentDao.Add(document);
+            post.created = DateTime.Now.ToString();
+            post.image = reName;
+            post.status = 0;
+            postDao.Add(post);
             return RedirectToAction("Add", new { mess = "1" });
         }
 
         public ActionResult Detail(int id)
         {
-            ViewBag.Detail = documentDao.GetDocumentById(id);
-           /* ViewBag.ListDocument = documentDao.GetDocumentById(id);*/
+            ViewBag.Detail = postDao.GetDetail(id);
             return View();
         }
 
-        public ActionResult ListDocument(int id, int page)
+        public ActionResult ListPost(int id, int page)
         {
             if (page == 0)
             {
                 page = 1;
             }
-            ViewBag.List = documentDao.GetDocumentByUser(id, page, 5);
+            ViewBag.List = postDao.GetPostByUser(id, page, 5);
             ViewBag.tag = page;
-            ViewBag.pageSize = documentDao.GetNumberDocumentByUser(id);
+            ViewBag.pageSize = postDao.GetNumberPostByUser(id);
             ViewBag.User = userDao.getById(id);
             return View();
         }

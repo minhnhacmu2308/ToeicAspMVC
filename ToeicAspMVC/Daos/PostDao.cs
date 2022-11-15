@@ -27,6 +27,35 @@ namespace ToeicAspMVC.Daos
             obj.status = 1;
             myDb.SaveChanges();
         }
-        
+
+        public void Add(Post post)
+        {
+            myDb.posts.Add(post);
+            myDb.SaveChanges();
+        }
+
+        public List<Post> GetPostByUser(int id, int page, int pagesize)
+        {
+            return myDb.posts.Where(p => p.idUser == id).OrderByDescending(u => u.idPost).ToList().
+                Skip((page - 1) * pagesize).Take(pagesize).ToList();
+        }
+
+        public int GetNumberPostByUser(int id)
+        {
+            int total = myDb.posts.Where(p => p.idUser == id).ToList().Count;
+            int count = 0;
+            count = total / 5;
+            if (total % 5 != 0)
+            {
+                count++;
+            }
+            return count;
+        }
+
+        public List<Post> GetPostApprove()
+        {
+            return myDb.posts.Where(x => x.status == 1).OrderByDescending(x => x.created).ToList();
+        }
+
     }
 }

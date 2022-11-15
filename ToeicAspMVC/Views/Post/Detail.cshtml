@@ -1,0 +1,103 @@
+﻿
+@{
+    ViewBag.Title = "Detail";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<main class="bg-grey pb-30">
+    @{ var post = ViewBag.Detail;}
+    <div class="container single-content">
+        <div class="entry-header entry-header-style-1 mb-50 pt-50">
+            <h1 class="entry-title mb-50 font-weight-900">
+                @post.title
+            </h1>
+
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="entry-meta align-items-center meta-2 font-small color-muted">
+                        <p class="mb-5">
+                            <a class="author-avatar" href="#"><img class="img-circle" src="/Content/assets/imgs/authors/author-3.jpg" alt=""></a>
+                            Đăng bởi <a href="/Document/List/@post.User.idUser/1"><span class="author-name font-weight-bold">@post.User.fullName</span></a>
+                        </p>
+                        <span class="mr-10"> @post.created</span>
+                    </div>
+                </div>
+                <div class="col-md-6 text-right d-none d-md-inline">
+                    <ul class="header-social-network d-inline-block list-inline mr-15">
+                        <li class="list-inline-item text-muted"><span>Share this: </span></li>
+                        <li class="list-inline-item"><a class="social-icon fb text-xs-center" target="_blank" href="#"><i class="elegant-icon social_facebook"></i></a></li>
+                        <li class="list-inline-item"><a class="social-icon tw text-xs-center" target="_blank" href="#"><i class="elegant-icon social_twitter "></i></a></li>
+                        <li class="list-inline-item"><a class="social-icon pt text-xs-center" target="_blank" href="#"><i class="elegant-icon social_pinterest "></i></a></li>
+                    </ul>
+                </div>
+            </div>
+            <img class="img-hover-slide" style="width: 100%; height: 100%; object-fit: cover;margin-top:20px" src="~/Content/assets/imgs/@post.image" />
+        </div>
+
+        <!--end single header-->
+        <!--figure-->
+        <article class="entry-wraper mb-50">
+
+            @Html.Raw(post.content)
+
+            <div class="single-social-share clearfix wow fadeIn animated">
+                <div class="entry-meta meta-1 font-small color-grey float-left mt-10">
+                    <span class="hit-count mr-15"><i class="elegant-icon icon_comment_alt mr-5"></i>Tất cả bình luận</span>
+                </div>
+                <ul class="header-social-network d-inline-block list-inline float-md-right mt-md-0 mt-4">
+                </ul>
+            </div>
+            @{ var userInfomatiom = (ToeicAspMVC.Models.User)Session["User"]; }
+            <!--Comments-->
+            <div class="comments-area">
+                <div class="widget-header-2 position-relative mb-30">
+                    <h5 class="mt-5 mb-30">Bình luận</h5>
+                </div>
+
+            </div>
+            <script>
+                function onReply(id) {
+                    namePId = "p" + id;
+                    var nameId = "reply" + id;
+                    var name = document.getElementById(namePId).innerHTML
+                    if (name == "Reply") {
+                        document.getElementById(nameId).style.display = "block";
+                        document.getElementById(namePId).innerHTML = "Cancel"
+                    } else {
+                        document.getElementById(nameId).style.display = "none";
+                        document.getElementById(namePId).innerHTML = "Reply"
+                    }
+
+
+                }
+            </script>
+            <!--comment form-->
+            <div class="comment-form wow fadeIn animated">
+                <div class="widget-header-2 position-relative mb-30">
+                    <h5 class="mt-5 mb-30"></h5>
+                </div>
+                <form class="form-contact comment_form" action="#" method="post" id="commentForm">
+                    <input type="hidden" name="id_post" value="@post.idPost" />
+                    <input type="hidden" name="status" value="1" />
+                    <input type="hidden" name="parent" value="0" />
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="form-group">
+                                <textarea required class="form-control w-100" name="text" id="comment" cols="30" rows="9" placeholder="Viết bình luận"></textarea>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="form-group">
+                        <button type="submit" class="btn button button-contactForm">Bình luận</button>
+                    </div>
+                </form>
+            </div>
+            <!--related posts-->
+
+        </article>
+    </div>
+    <!--container-->
+</main>
+
+
+
