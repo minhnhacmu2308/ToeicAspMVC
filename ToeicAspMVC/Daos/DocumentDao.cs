@@ -66,5 +66,11 @@ namespace ToeicAspMVC.Daos
             }
             return count;
         }
+
+        public List<Document> GetDocumentIndexs(int page, int pagesize)
+        {
+            return myDb.documents.Where(x => x.status == 1).OrderByDescending(u => u.idDocument).ToList().
+                Skip((page - 1) * pagesize).Take(pagesize).ToList();
+        }
     }
 }

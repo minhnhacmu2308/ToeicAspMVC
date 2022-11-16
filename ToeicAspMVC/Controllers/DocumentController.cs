@@ -13,9 +13,15 @@ namespace ToeicAspMVC.Controllers
         DocumentDao documentDao = new DocumentDao();
         UserDao userDao = new UserDao();
         // GET: Document
-        public ActionResult Index()
+        public ActionResult Index(int page)
         {
-            ViewBag.List = documentDao.GetDocumentList();
+            if (page == 0)
+            {
+                page = 1;
+            }
+            ViewBag.List = documentDao.GetDocumentIndexs(page, 5);
+            ViewBag.tag = page;
+            ViewBag.pageSize = documentDao.getNumberPost();
             return View();
         }
 

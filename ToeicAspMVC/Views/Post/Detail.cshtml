@@ -48,12 +48,142 @@
             </div>
             @{ var userInfomatiom = (ToeicAspMVC.Models.User)Session["User"]; }
             <!--Comments-->
-            <div class="comments-area">
-                <div class="widget-header-2 position-relative mb-30">
-                    <h5 class="mt-5 mb-30">Bình luận</h5>
-                </div>
-
+        <div class="comments-area">
+            <div class="widget-header-2 position-relative mb-30">
+                <h5 class="mt-5 mb-30">Bình luận</h5>
             </div>
+            @foreach (var item in ViewBag.listComment)
+            {
+                if (item.parent == 0)
+                {
+                    <div class="comment-list wow fadeIn animated">
+                        <div class="single-comment justify-content-between d-flex">
+                            <div class="user justify-content-between d-flex">
+                                <div class="thumb">
+                                    <img src="/Content/assets/imgs/authors/author-2.jpg" alt="">
+                                </div>
+                                <div class="desc">
+                                    <p class="comment">
+                                        @item.content
+                                    </p>
+                                    <div class="d-flex justify-content-between">
+                                        <div class="d-flex align-items-center">
+                                            <h5>
+                                                <a href="#">@item.User.fullName</a>
+                                            </h5>
+                                            @{
+                                                DateTime a = Convert.ChangeType(item.created, typeof(DateTime));
+                                                DateTime now1 = DateTime.Now;
+                                                int checkTime = now1.Minute - a.Minute;
+                                            }
+                                            @if (a.Year == now1.Year && a.Month == now1.Month && a.Day == now1.Day
+                                                && a.Hour == now1.Hour && checkTime < 2)
+                                            {
+                                                <p class="date">Vừa xong</p>
+                                            }
+                                            else
+                                            {
+                                                <p class="date">@item.created</p>
+                                            }
+                                            @if (userInfomatiom != null)
+                                            {
+                                                if (userInfomatiom.idUser == item.User.idUser)
+                                                {
+                                                    <form action="/Comment/DeleteComment" method="post" style="margin-left:15px">
+                                                        <input type="hidden" value="@item.idComment" name="id" />
+                                                        <input type="hidden" name="postId" value="@post.idPost" />
+                                                        <button type="submit" style="color: #e3363e; text-decoration: none;border:none">Xóa</button>
+                                                    </form>
+                                                }
+                                            }
+
+                                        </div>
+                                    </div>
+                                    <div style="margin-top:15px" class="reply-btn">
+                                        @{
+                                            var id = "reply" + item.idComment;
+                                            var nameP = "p" + item.idComment;
+                                        }
+                                        <a id="@nameP" onclick="onReply(@item.idComment)" class="btn-reply" style="color: #5869da">Reply</a>
+                                    </div>
+                                    <div id="@id" style="margin-top:15px;margin-left:-20px;display:none">
+                                        <form action="/Comment/PostComment" method="post" class="form-inline">
+                                            <input type="hidden" name="idPost" value="@post.idPost" />
+                                            <input type="hidden" name="status" value="1" />
+                                            <input type="hidden" name="parent" value="@item.idComment" />
+
+                                            <div style="width:400px !important" class="form-group mx-sm-3 mb-2">
+                                                <input required style="width:400px !important" type="text" class="form-control" name="content" id="inputPassword2" placeholder="Reply comment">
+                                            </div>
+                                            <button type="submit" class="btn button button-contactForm">Bình luận</button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        @foreach (var item1 in ViewBag.listComment)
+                        {
+                            if (item1.parent == item.idComment)
+                            {
+                                <div class="single-comment depth-2 justify-content-between d-flex mt-50">
+                                    <div class="user justify-content-between d-flex">
+                                        <div class="thumb">
+                                            <img src="/Content/assets/imgs/authors/author.jpg" alt="">
+                                        </div>
+                                        <div class="desc">
+                                            <p class="comment">
+                                                @item1.content
+                                            </p>
+                                            <div class="d-flex justify-content-between">
+                                                <div class="d-flex align-items-center">
+                                                    <h5>
+                                                        <a href="#">@item1.User.fullName</a>
+                                                    </h5>
+                                                    @{
+                                                        DateTime a1 = Convert.ChangeType(item1.created, typeof(DateTime));
+                                                        DateTime now2 = DateTime.Now;
+                                                        int checkTime1 = now2.Minute - a1.Minute;
+                                                    }
+                                                    @if (a1.Year == now2.Year && a1.Month == now1.Month && a1.Day == now2.Day
+                                                        && a1.Hour == now2.Hour && checkTime < 2)
+                                                    {
+                                                        <p class="date">Vừa xong</p>
+                                                    }
+                                                    else
+                                                    {
+                                                        <p class="date">@item1.created</p>
+                                                    }
+                                                </div>
+                                                @if (userInfomatiom != null)
+                                                {
+                                                    if (userInfomatiom.idUser == item1.User.idUser)
+                                                    {
+                                                        <form action="/Comment/DeleteComment" method="post" style="margin-left:15px">
+                                                            <input type="hidden" value="@item1.idComment" name="id" />
+                                                            <input type="hidden" name="postId" value="@post.idPost" />
+                                                            <button type="submit" style="color: #e3363e; text-decoration: none;border:none">Xóa</button>
+                                                        </form>
+                                                    }
+                                                }
+
+
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                        }
+
+
+                    </div>
+                }
+
+            }
+
+
+        </div>
             <script>
                 function onReply(id) {
                     namePId = "p" + id;
@@ -75,14 +205,14 @@
                 <div class="widget-header-2 position-relative mb-30">
                     <h5 class="mt-5 mb-30"></h5>
                 </div>
-                <form class="form-contact comment_form" action="#" method="post" id="commentForm">
-                    <input type="hidden" name="id_post" value="@post.idPost" />
+                <form class="form-contact comment_form" action="/Comment/PostComment" method="post" id="commentForm">
+                    <input type="hidden" name="idPost" value="@post.idPost" />
                     <input type="hidden" name="status" value="1" />
                     <input type="hidden" name="parent" value="0" />
                     <div class="row">
                         <div class="col-12">
                             <div class="form-group">
-                                <textarea required class="form-control w-100" name="text" id="comment" cols="30" rows="9" placeholder="Viết bình luận"></textarea>
+                                <textarea required class="form-control w-100" name="content" id="comment" cols="30" rows="9" placeholder="Viết bình luận"></textarea>
                             </div>
                         </div>
 
