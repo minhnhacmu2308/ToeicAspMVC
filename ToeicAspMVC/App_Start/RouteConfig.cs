@@ -20,8 +20,13 @@ namespace ToeicAspMVC
             routes.MapRoute(
             name: "Student Post",
             url: "Post/ListPost/{page}",
-            defaults: new { controller = "Post", action = "ListPost", id = UrlParameter.Optional }
+            defaults: new { controller = "Post", action = "Index", id = UrlParameter.Optional }
            );
+            routes.MapRoute(
+           name: "Student for Post",
+           url: "Post/List/{id}/{page}",
+           defaults: new { controller = "Post", action = "ListPost", id = UrlParameter.Optional }
+          );
             routes.MapRoute(
            name: "Document Index",
            url: "Document/Index/{page}",

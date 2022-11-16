@@ -1,0 +1,189 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<main>
+    @{ var userInfomatiom = (ToeicAspMVC.Models.User)Session["User"]; }
+    <div class="archive-header pt-50">
+        <div class="container">
+            <h2 class="font-weight-900">Danh sách mục tiêu cá nhân</h2>
+
+            <div class="bt-1 border-color-1 mt-30 mb-50"></div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="loop-grid mb-30">
+
+            <button type="button" class="btn btn-success" data-bs-toggle="modal"
+                    data-bs-target="#exampleModalAdd" style="margin-top : -50px !important">
+                Tạo mới mục tiêu
+            </button>
+            <button type="button" class="btn btn-info" data-bs-toggle="modal"
+                    data-bs-target="#exampleModalAddO" style="margin-top : -50px;margin-left : 20px !important">
+                Lựa chọn mục tiêu
+            </button>
+            @if (ViewBag.Msg != null)
+            {
+                <div class="alert alert-success">
+                    <strong>Thành công</strong>
+                </div>
+            }
+            <div class="modal fade" id="exampleModalAdd" tabindex="-1"
+                 aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Tạo mới mục tiêu</h5>
+                        </div>
+                        <div class="modal-body">
+                            <form method="POST" action="/MyTarget/Add" class="register-form" id="register-form" enctype="multipart/form-data">
+                                <div class="col">
+                                    <div class="row">
+                                        <div class="col-12 mb-3">
+                                            <label for="category-film"
+                                                   class="col-form-label">Tên mục tiêu:</label>
+                                            <input type="text" class="form-control" id="category-film" name="name" required>
+                                            <input type="hidden" class="form-control" id="category-film" name="idUser" value="@userInfomatiom.idUser">
+                                        </div>
+
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-12 mb-3">
+                                            <label for="category-film"
+                                                   class="col-form-label">Ngày hoàn thành:</label>
+                                            <input type="date" class="form-control" id="category-film" name="deadline" required>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-12 mb-3">
+                                            <label for="category-film"
+                                                   class="col-form-label">Mô tả:</label>
+                                            <textarea name="content" class="form-control" cols="100"
+                                                      rows="5"></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-danger"
+                                            data-bs-dismiss="modal">
+                                        Đóng
+                                    </button>
+                                    <button type="submit" class="btn btn-primary">Lưu </button>
+                                </div>
+                            </form>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <div class="modal fade" id="exampleModalAddO" tabindex="-1"
+                 aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Lựa chọn mục tiêu</h5>
+                        </div>
+                        <div class="modal-body">
+                            <form method="POST" action="/MyTarget/AddOption" class="register-form" id="register-form" enctype="multipart/form-data">
+                                <div class="col">
+                                    <div class="row">
+                                        <div class="col-12 mb-3">
+                                            <select class="form-select" aria-label="Default select example" style="width:500px !important" id="theloai" tabindex="8" name="idTarget" required>
+                                                <option selected value="">&emsp;&emsp;&emsp;= = = = = &emsp;  Chọn mục tiêu &emsp;  = = = = =&emsp;&emsp;&emsp;</option>
+                                                @foreach (var item3 in ViewBag.Target)
+                                                {
+                                                    <option value="@item3.idTarget">@item3.name (@item3.point)</option>
+                                                }
+                                            </select>
+                                            <input type="hidden" class="form-control" id="category-film" name="idUser" value="@userInfomatiom.idUser">
+                                        </div>
+
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-12 mb-3">
+                                            <label for="category-film"
+                                                   class="col-form-label">Ngày hoàn thành:</label>
+                                            <input type="date" class="form-control" id="category-film" name="deadline" required>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-danger"
+                                            data-bs-dismiss="modal">
+                                        Đóng
+                                    </button>
+                                    <button type="submit" class="btn btn-primary">Lưu </button>
+                                </div>
+                            </form>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th scope="col">STT</th>
+                            <th scope="col">Tên mục tiêu</th>
+                            <th scope="col">Ngày hoàn thành</th>
+                            <th scope="col">Điểm đạt được</th>
+                            <th scope="col">Tình trạng</th>
+                            <th scope="col">Mô tả</th>
+                            <th scope="col">Ngày tạo</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @{ int index = 0;}
+                        @foreach (var item in ViewBag.List)
+                        {
+                            index++;
+                            <tr>
+                                <th scope="row">@index</th>
+                                <td>
+                                    @if (item.idTarget == 1)
+                                    {
+                                        <span>@item.name</span>
+                                    }
+                                    else
+                                    {
+                                        <span>@item.Target.name</span>
+                                    }
+                                </td>
+                                <td>@item.deadline</td>
+                                <td>
+                                    @if (item.idTarget == 1)
+                                    {
+                                        <span>0</span>
+                                    }
+                                    else
+                                    {
+                                        <span>@item.Target.point</span>
+                                    }
+                                </td>
+                                <td>
+                                    @if (item.status == 1)
+                                    {
+                                        <span>Đã hoàn thành</span>
+                                    }
+                                    else
+                                    {
+                                        <span>Chưa hoàn thành</span>
+                                    }
+                                </td>
+                                <td>@item.content</td>
+                                <td>@item.created</td>
+                            </tr>
+                        }
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+</main>
+

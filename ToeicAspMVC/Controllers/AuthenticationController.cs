@@ -27,6 +27,11 @@ namespace ToeicAspMVC.Controllers
             return View();
         }
 
+        public ActionResult TestExam()
+        {
+            return View();
+        }
+
         [HttpPost]
         public ActionResult Register(User user,FormCollection form)
         {

@@ -40,7 +40,7 @@ namespace ToeicAspMVC.Controllers
             file.SaveAs(Server.MapPath("~/Content/assets/imgs/" + reName));
             document.created = DateTime.Now.ToString();
             document.image = reName;
-            document.status = 0;
+            document.status = 1;
             documentDao.Add(document);
             return RedirectToAction("Add", new { mess = "1" });
         }

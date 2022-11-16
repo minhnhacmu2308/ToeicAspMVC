@@ -14,9 +14,15 @@ namespace ToeicAspMVC.Controllers
         UserDao userDao = new UserDao();
         CommentDao commentDao = new CommentDao();
         // GET: Document
-        public ActionResult Index()
+        public ActionResult Index(int page)
         {
-            ViewBag.List = postDao.GetPostApprove();
+            if (page == 0)
+            {
+                page = 1;
+            }
+            ViewBag.List = postDao.GetPosts(page, 5);
+            ViewBag.tag = page;
+            ViewBag.pageSize = postDao.GetNumberPost();
             return View();
         }
 
@@ -47,15 +53,16 @@ namespace ToeicAspMVC.Controllers
             return View();
         }
 
-        public ActionResult ListPost( int page)
+        public ActionResult ListPost(int id, int page)
         {
             if (page == 0)
             {
                 page = 1;
             }
-            ViewBag.List = postDao.GetPosts(page, 5);
+            ViewBag.List = postDao.GetPostByUser(id, page, 5);
             ViewBag.tag = page;
-            ViewBag.pageSize = postDao.GetNumberPost();         
+            ViewBag.pageSize = postDao.GetNumberPostByUser(id);
+            ViewBag.User = userDao.getById(id);
             return View();
         }
     }
