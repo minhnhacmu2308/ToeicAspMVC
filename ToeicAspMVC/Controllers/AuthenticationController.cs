@@ -12,7 +12,7 @@ namespace ToeicAspMVC.Controllers
     public class AuthenticationController : Controller
     {
         UserDao userDao = new UserDao();
-
+        string[] answers = { "A", "B", "D", "A", "C", "B", "A", "D", "D", "B", "A", "B", "C", "D", "A", "B", "A", "C", "B", "A"};
         // GET: Authentication
         public ActionResult Index()
         {
@@ -102,16 +102,26 @@ namespace ToeicAspMVC.Controllers
         }
 
         [HttpPost]
-        public JsonResult TextExam(AjaxRequest request)
+        public JsonResult TestExam(AjaxRequest request)
         {
-            if(request.Answers.Count < 20)
+            User user = (User)Session["User"];
+            for(int i = 0; i< 20; i++)
             {
-                return Json(new { Data = "Cần chọn đầy đủ đáp án ", Status = false }, JsonRequestBehavior.AllowGet);
-            }
-            else
+                if ("".Equals(request.Answers[i])){
+                    return Json(new { Data = "Cần chọn đầy đủ đáp án ", Status = false }, JsonRequestBehavior.AllowGet);
+                }
+            };
+            int total = 0;
+            for (int i = 0; i < 20; i++)
             {
-                return Json(new { Total = 1, Status = true }, JsonRequestBehavior.AllowGet);
-            }
+                if (answers[i].Equals(request.Answers[i]))
+                {
+                    total += 10;
+                }
+            };
+            user.point = total;
+            userDao.Update(user);
+            return Json(new { Total = total, Status = true }, JsonRequestBehavior.AllowGet);
            
         }
 

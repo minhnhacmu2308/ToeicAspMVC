@@ -107,6 +107,7 @@ namespace ToeicAspMVC.Daos
             obj.phoneNumber = user.phoneNumber;
             obj.password = user.password;
             obj.idRole = user.idRole;
+            obj.point = user.point;
             myDb.SaveChanges();
         }
 
