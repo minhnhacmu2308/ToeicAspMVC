@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using ToeicAspMVC.Daos;
 using ToeicAspMVC.Models;
+using ToeicAspMVC.Requests;
 
 namespace ToeicAspMVC.Controllers
 {
@@ -99,6 +100,22 @@ namespace ToeicAspMVC.Controllers
             }
 
         }
+
+        [HttpPost]
+        public JsonResult TextExam(AjaxRequest request)
+        {
+            if(request.Answers.Count < 20)
+            {
+                return Json(new { Data = "Cần chọn đầy đủ đáp án ", Status = false }, JsonRequestBehavior.AllowGet);
+            }
+            else
+            {
+                return Json(new { Total = 1, Status = true }, JsonRequestBehavior.AllowGet);
+            }
+           
+        }
+
+
         public ActionResult Logout()
         {
             Session.Remove("User");
