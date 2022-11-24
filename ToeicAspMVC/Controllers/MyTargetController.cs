@@ -15,6 +15,8 @@ namespace ToeicAspMVC.Controllers
         // GET: MyTarget
         public ActionResult Index(string mess)
         {
+            DateTime aDateTime = DateTime.Now;
+            ViewBag.CurrentDate = aDateTime.Year + "-" + aDateTime.Month + "-" + aDateTime.Day;
             ViewBag.Msg = mess;
             var user = (User)Session["User"];
             ViewBag.List = myTargetDao.GetByUser(user.idUser);

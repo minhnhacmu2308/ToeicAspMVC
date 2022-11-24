@@ -13,6 +13,25 @@
         </div>
     </div>
     <div class="container">
+        <div class="modal fade" id="exampleModalAddO" tabindex="-1"
+             aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Chúc mừng bạn đã hoàn thành bài kiểm tra </h5>
+                    </div>
+                    <div class="modal-body">
+                        <span>Số điểm của đạt được của bạn là:</span><span style="font-weight:bold" id="point"></span>
+                        <div class="modal-footer">
+                            <a href="/Home/Index" class="btn btn-danger">
+                                Đóng
+                            </a>
+                            <a href="/Authentication/RecommendDistance" class="btn btn-primary">Ok</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
         <form id="form-test" method="post">
             <input type="hidden" name="csrfmiddlewaretoken" value="fVgUlhkQqqFGbimrBjLSb8qQDn5kmBRSBBdMp4s1KrG5gE5mJ9Shn6rTJITrUa9g">
             <section id="part-2" class="test-part">
@@ -130,7 +149,7 @@
                         The president said that it was the _____ meeting he has ever had.
                     </span>
                     <div class="options-wrapper">
-                        <select  style="width:300px !important" id="answers6" required aria-label="Default select example">
+                        <select style="width:300px !important" id="answers6" required aria-label="Default select example">
                             <option value="" selected>&emsp;&emsp;&emsp;Choose Answer&emsp;&emsp;&emsp;</option>
                             <option value="A">
                                 (A)
@@ -161,7 +180,7 @@
                     </span>
                     <div class="options-wrapper">
                         <select style="width:300px" id="answers7" required aria-label="Default select example">
-                           <option value="" selected>&emsp;&emsp;&emsp;Choose Answer&emsp;&emsp;&emsp;</option>
+                            <option value="" selected>&emsp;&emsp;&emsp;Choose Answer&emsp;&emsp;&emsp;</option>
                             <option value="A">
                                 (A)
                                 manages
@@ -190,7 +209,7 @@
                     </span>
                     <div class="options-wrapper">
                         <select style="width:300px" id="answers8" required aria-label="Default select example">
-                           <option value="" selected>&emsp;&emsp;&emsp;Choose Answer&emsp;&emsp;&emsp;</option>
+                            <option value="" selected>&emsp;&emsp;&emsp;Choose Answer&emsp;&emsp;&emsp;</option>
                             <option value="A">
                                 (A)
                                 substantial
@@ -220,7 +239,7 @@
                     </span>
                     <div class="options-wrapper">
                         <select style="width:300px" id="answers9" required aria-label="Default select example">
-                           <option value="" selected>&emsp;&emsp;&emsp;Choose Answer&emsp;&emsp;&emsp;</option>
+                            <option value="" selected>&emsp;&emsp;&emsp;Choose Answer&emsp;&emsp;&emsp;</option>
                             <option value="A">
                                 (A)
                                 strategy
@@ -249,7 +268,7 @@
                     </span>
                     <div class="options-wrapper">
                         <select style="width:300px" id="answers10" required aria-label="Default select example">
-                           <option value="" selected>&emsp;&emsp;&emsp;Choose Answer&emsp;&emsp;&emsp;</option>
+                            <option value="" selected>&emsp;&emsp;&emsp;Choose Answer&emsp;&emsp;&emsp;</option>
                             <option value="A">
                                 (A)
                                 truth
@@ -304,7 +323,7 @@
                         </span>
                         <div class="options-wrapper">
                             <select style="width:300px" id="answers11" required aria-label="Default select example">
-                               <option value="" selected>&emsp;&emsp;&emsp;Choose Answer&emsp;&emsp;&emsp;</option>
+                                <option value="" selected>&emsp;&emsp;&emsp;Choose Answer&emsp;&emsp;&emsp;</option>
                                 <option value="A">
                                     (A)
                                     to
@@ -333,7 +352,7 @@
                         </span>
                         <div class="options-wrapper">
                             <select style="width:300px" id="answers12" required aria-label="Default select example">
-                               <option value="" selected>&emsp;&emsp;&emsp;Choose Answer&emsp;&emsp;&emsp;</option>
+                                <option value="" selected>&emsp;&emsp;&emsp;Choose Answer&emsp;&emsp;&emsp;</option>
                                 <option value="A">
                                     (A)
                                     improves
@@ -391,7 +410,7 @@
                         </span>
                         <div class="options-wrapper">
                             <select style="width:300px" id="answers14" required aria-label="Default select example">
-                               <option value="" selected>&emsp;&emsp;&emsp;Choose Answer&emsp;&emsp;&emsp;</option>
+                                <option value="" selected>&emsp;&emsp;&emsp;Choose Answer&emsp;&emsp;&emsp;</option>
                                 <option value="A">
                                     (A)
                                     password
@@ -495,7 +514,7 @@
                         </span>
                         <div class="options-wrapper">
                             <select style="width:300px" id="answers17" required aria-label="Default select example">
-                               <option value="" selected>&emsp;&emsp;&emsp;Choose Answer&emsp;&emsp;&emsp;</option>
+                                <option value="" selected>&emsp;&emsp;&emsp;Choose Answer&emsp;&emsp;&emsp;</option>
                                 <option value="A">
                                     (A)
                                     [1]
@@ -594,7 +613,7 @@
                         </span>
                         <div class="options-wrapper">
                             <select style="width:300px" id="answers20" required aria-label="Default select example">
-                               <option value="" selected>&emsp;&emsp;&emsp;Choose Answer&emsp;&emsp;&emsp;</option>
+                                <option value="" selected>&emsp;&emsp;&emsp;Choose Answer&emsp;&emsp;&emsp;</option>
                                 <option value="A">
                                     (A)
                                     Mining facilities
@@ -612,7 +631,7 @@
                                     Automobile manufacturing
                                 </option>
                             </select>
-                            <br />                          
+                            <br />
                         </div>
                     </div>
                 </div>
@@ -642,14 +661,8 @@
                 cache: false,
                 success: function (t) {
                     if (t.Status == true) {
-                        swal({
-                            title: 'Làm bài kiểm tra đầu vào thành công!',
-                            /* text: 'Redirecting...', */
-                            icon: 'success',
-                            timer: 3000,
-                            buttons: true,
-                            type: 'success'
-                        })
+                        $("#point").text(t.Total);
+                        $('#exampleModalAddO').modal('show');
                     } else{
                         swal({
                             title: 'Cần chọn đầy đủ đáp án!',
