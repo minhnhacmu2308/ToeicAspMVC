@@ -13,7 +13,7 @@ namespace ToeicAspMVC.Controllers
     {
         UserDao userDao = new UserDao();
         DistanceDao distanceDao = new DistanceDao();
-        string[] answers = { "A", "B", "B", "A", "C", "B", "A", "D", "D", "B", "A", "B", "C", "D", "A", "B", "A", "C", "B", "A"};
+        string[] answers = { "A", "B", "B", "A", "C", "B", "A", "C", "B", "B", "A", "B", "C", "D", "A", "B", "A", "C", "B", "A"};
         // GET: Authentication
         public ActionResult Index()
         {

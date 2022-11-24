@@ -921,6 +921,7 @@
     <Content Include="Views\Authentication\RecommendDistance.cshtml" />
     <Content Include="Views\MyTarget\ApproveTarget.cshtml" />
     <Content Include="Views\Authentication\Information.cshtml" />
+    <Content Include="Views\Product\UserProduct.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

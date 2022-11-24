@@ -15,6 +15,16 @@ namespace ToeicAspMVC.Daos
             return myDb.products.ToList();
         }
 
+        public List<UserProduct> GetUserProduct(int id)
+        {
+            return myDb.userProducts.Where(x => x.idUser == id).ToList();
+        }
+
+        public List<UserProduct> GetProductUser(int id)
+        {
+            return myDb.userProducts.Where(x => x.idProduct == id).ToList();
+        }
+
         public Product GetDetail(int id)
         {
             return myDb.products.FirstOrDefault(x => x.idProduct == id);
@@ -23,6 +33,12 @@ namespace ToeicAspMVC.Daos
         public void Add(Product product)
         {
             myDb.products.Add(product);
+            myDb.SaveChanges();
+        }
+
+        public void AddUserProduct(UserProduct userProduct)
+        {
+            myDb.userProducts.Add(userProduct);
             myDb.SaveChanges();
         }
 

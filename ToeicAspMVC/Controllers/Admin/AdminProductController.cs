@@ -53,8 +53,16 @@ namespace ToeicAspMVC.Controllers.Admin
 
         public ActionResult Delete(Product product)
         {
-            productDao.Delete(product.idProduct);
-            return RedirectToAction("Index", new { msg = "1" });
+            var check = productDao.GetProductUser(product.idProduct);
+            if(check.Count > 0)
+            {
+                return RedirectToAction("Index", new { msg = "2" });
+            }
+            else
+            {
+                productDao.Delete(product.idProduct);
+                return RedirectToAction("Index", new { msg = "1" });
+            }
         }
     }
 }

@@ -4,6 +4,21 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 @{ var userInfomatiom = (ToeicAspMVC.Models.User)Session["User"]; }
+@if (ViewBag.Msg != null)
+{
+   
+        <script>
+            swal({
+                title: 'Quy đổi sản phẩm thành công,
+                /* text: 'Redirecting...', */
+                icon: 'success',
+                timer: 3000,
+                buttons: true,
+                type: 'success'
+            })
+        </script>
+
+}
 <main>
     <div class="archive-header pt-50">
         <div class="container">
@@ -52,13 +67,15 @@
 
                                 <div class="modal-body">
                                     <h5>Sản phẩm: @item1.name bằng @item1.point điểm</h5>
-                                    <form action="" method="post">
+                                    <form action="/Product/Add" method="post">
+                                        <input type="hidden" name="idUser" value="@userInfomatiom.idUser" />
+                                        <input type="hidden" name="idProduct" value="@item1.idProduct" />
                                         <div class="col">
                                             <div class="row">
                                                 <div class="col-12 mb-3">
                                                     <label for="category-film"
-                                                           class="col-form-label">Địa chỉ nhận sản phẩm:</label>
-                                                    <textarea name="content" class="form-control" cols="100"
+                                                           class="col-form-label">Ghi chú:</label>
+                                                    <textarea name="note" class="form-control" cols="100"
                                                               rows="5"></textarea>
                                                 </div>
                                             </div>

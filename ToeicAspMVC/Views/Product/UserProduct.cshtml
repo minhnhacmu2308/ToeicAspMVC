@@ -1,0 +1,59 @@
+﻿
+@{
+    ViewBag.Title = "UserProduct";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<main>
+    @{ var userInfomatiom = (ToeicAspMVC.Models.User)Session["User"]; }
+    <div class="archive-header pt-50">
+        <div class="container">
+            <h2 class="font-weight-900">Danh sách sản phẩm đã quy đổi</h2>
+
+            <div class="bt-1 border-color-1 mt-30 mb-50"></div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="loop-grid mb-30">
+            <div class="row">
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th scope="col">STT</th>
+                            <th scope="col">Tên sản phẩm</th>
+                            <th scope="col">Ảnh</th>
+                            <th scope="col">Điểm quy đổi</th>
+                            <th scope="col">Ngày quy đổi</th>
+                            <th scope="col">Ghi chú</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @{ int index = 0;}
+                        @foreach (var item in ViewBag.List)
+                        {
+                            index++;
+                        <tr>
+                            <th scope="row">@index</th>
+                            <td>
+
+                                @item.Product.name
+
+                            </td>
+                            <td>
+                                <img style="width: 200px !important;height: 150px !important;" src="~/Content/assets/imgs/@item.Product.image"
+                                     class="img-fluid">
+                            </td>
+                            <td>@item.Product.point</td>
+                            <td>@item.created</td>
+                            <td>@item.note</td>
+                        </tr>
+                        }
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+</main>
+
