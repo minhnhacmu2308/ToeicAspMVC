@@ -29,6 +29,8 @@ namespace ToeicAspMVC.Models
 
         public DbSet<Distance> distances { get; set; }
 
+        public DbSet<UserProduct> userProducts { get; set; }
+
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
 

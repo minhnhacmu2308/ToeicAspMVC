@@ -108,6 +108,17 @@ namespace ToeicAspMVC.Daos
             obj.password = user.password;
             obj.idRole = user.idRole;
             obj.point = user.point;
+            obj.isTest = user.isTest;
+            myDb.SaveChanges();
+        }
+
+        public void UpdateAdmin(User user)
+        {
+            var obj = myDb.users.FirstOrDefault(x => x.idUser == user.idUser);
+            obj.fullName = user.fullName;
+            obj.phoneNumber = user.phoneNumber;
+            obj.password = user.password;
+            obj.idRole = user.idRole;
             myDb.SaveChanges();
         }
 

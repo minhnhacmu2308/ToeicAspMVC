@@ -161,12 +161,17 @@
     <Compile Include="Migrations\202211131529380_new.designer.cs">
       <DependentUpon>202211131529380_new.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202211240835225_add table.cs" />
+    <Compile Include="Migrations\202211240835225_add table.designer.cs">
+      <DependentUpon>202211240835225_add table.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Comment.cs" />
     <Compile Include="Models\Course.cs" />
     <Compile Include="Models\Distance.cs" />
     <Compile Include="Models\Document.cs" />
     <Compile Include="Models\MyTarget.cs" />
+    <Compile Include="Models\UserProduct.cs" />
     <Compile Include="Models\Post.cs" />
     <Compile Include="Models\Product.cs" />
     <Compile Include="Models\Role.cs" />
@@ -913,6 +918,9 @@
     <Content Include="Views\MyTarget\Index.cshtml" />
     <Content Include="Views\MyTarget\Add.cshtml" />
     <Content Include="Views\MyTarget\AddOption.cshtml" />
+    <Content Include="Views\Authentication\RecommendDistance.cshtml" />
+    <Content Include="Views\MyTarget\ApproveTarget.cshtml" />
+    <Content Include="Views\Authentication\Information.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -934,6 +942,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\202211131529380_new.resx">
       <DependentUpon>202211131529380_new.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202211240835225_add table.resx">
+      <DependentUpon>202211240835225_add table.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

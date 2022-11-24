@@ -7,25 +7,24 @@ using System.Web;
 
 namespace ToeicAspMVC.Models
 {
-    public class Product
+    public class UserProduct
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int idProduct { get; set; }
+        public int idUserProduct { get; set; }
 
-        [StringLength(255)]
-        [Required]
-        public string name { get; set; }
-
-        [StringLength(255)]
-        public string image { get; set; }
-
-        public int point { get; set; }
+        public string note { get; set; }
 
         public int status { get; set; }
 
+        public int idUser { get; set; }
+        public int idProduct { get; set; }
+
         public string created { get; set; }
 
-        public virtual ICollection<UserProduct> UserProducts { get; set; }
+        public virtual User User { get; set; }
+
+        public virtual Product Product { get; set; }
+     
     }
 }

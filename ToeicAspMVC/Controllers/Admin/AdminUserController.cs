@@ -31,6 +31,7 @@ namespace ToeicAspMVC.Controllers.Admin
             {
                 user.point = 0;
                 user.status = 1;
+                user.isTest = false;
                 user.created = DateTime.Now.ToString();
                 userDao.Add(user);
                 return RedirectToAction("Index", new { msg = "1" });
@@ -40,7 +41,7 @@ namespace ToeicAspMVC.Controllers.Admin
         [ValidateInput(false)]
         public ActionResult Update(User user)
         {
-            userDao.Update(user);
+            userDao.UpdateAdmin(user);
             return RedirectToAction("Index", new { msg = "1" });
         }
 

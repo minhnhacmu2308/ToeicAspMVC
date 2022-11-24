@@ -3,7 +3,7 @@
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
+@{ var userInfomatiom = (ToeicAspMVC.Models.User)Session["User"]; }
 <main>
     <div class="archive-header pt-50">
         <div class="container">
@@ -17,22 +17,66 @@
             <div class="row">
                 @foreach (var item1 in ViewBag.List)
                 {
+                    var idModelDel = "exampleModalDel" + item1.idProduct;
                     <article class="col-lg-4 col-md-6 mb-30 wow fadeInUp animated" data-wow-delay="0.2s">
                         <div class="post-card-1 border-radius-10 hover-up">
                             <div class="thumb-overlay img-hover-slide position-relative" style="background-image: url('/Content/assets/imgs/@item1.image')">
-                                <a class="img-link" href="/Product/Detail/@item1.idProduct"></a>
+                                @*<a class="img-link" href="/Product/Detail/@item1.idProduct"></a>*@
                                 <span class="top-right-icon bg-success"><i class="elegant-icon icon_camera_alt"></i></span>
                             </div>
                             <div class="post-content p-30" style="height : 100px !important">
                                 <div class="d-flex post-card-content">
                                     <h5 class="post-title mb-30 font-weight-900">
-                                        <a href="/Product/Detail/@item1.idProduct">@item1.name (@item1.point điểm)</a>
+                                        @* <a href="/Product/Detail/@item1.idProduct">@item1.name (@item1.point điểm)</a>*@
+                                        <a>@item1.name (@item1.point điểm)</a>
                                     </h5>
-                                   
+                                    @if (userInfomatiom != null)
+                                    {
+                                        if (userInfomatiom.idRole == 3)
+                                        {
+                                            <button type="button" data-bs-toggle="modal" data-bs-target="#@idModelDel" class="btn btn-warning">Quy đổi</button>
+                                        }
+                                    }
+
                                 </div>
                             </div>
                         </div>
                     </article>
+                    <div class="modal fade" id="@idModelDel" tabindex="-1"
+                         aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">Bạn chắc chắn muốn quy đổi?</h5>
+                                </div>
+
+                                <div class="modal-body">
+                                    <h5>Sản phẩm: @item1.name bằng @item1.point điểm</h5>
+                                    <form action="" method="post">
+                                        <div class="col">
+                                            <div class="row">
+                                                <div class="col-12 mb-3">
+                                                    <label for="category-film"
+                                                           class="col-form-label">Địa chỉ nhận sản phẩm:</label>
+                                                    <textarea name="content" class="form-control" cols="100"
+                                                              rows="5"></textarea>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-danger"
+                                                    data-bs-dismiss="modal">
+                                                Đóng
+                                            </button>
+                                            <button type="submit" class="btn btn-primary">Quy đổi </button>
+                                        </div>
+                                    </form>
+
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
                 }
             </div>
         </div>

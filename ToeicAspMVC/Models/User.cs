@@ -36,6 +36,8 @@ namespace ToeicAspMVC.Models
 
         public string created { get; set; }
 
+        public bool isTest { get; set; }
+
         public virtual Role Role { get; set; }
         public virtual ICollection<Post> Posts { get; set; }
         public virtual ICollection<Document> Documents { get; set; }
@@ -43,5 +45,7 @@ namespace ToeicAspMVC.Models
         public virtual ICollection<Comment> Comments { get; set; }
 
         public virtual ICollection<MyTarget> MyTargets { get; set; }
+
+        public virtual ICollection<UserProduct> UserProducts { get; set; }
     }
 }

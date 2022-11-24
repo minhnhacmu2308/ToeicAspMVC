@@ -22,6 +22,27 @@ namespace ToeicAspMVC.Controllers
             return View();
         }
 
+        public ActionResult ApproveTarget(string mess)
+        {
+            ViewBag.Msg = mess;
+            ViewBag.List = myTargetDao.GetTargetOption();
+            return View();
+        }
+
+        public ActionResult Approved(FormCollection form)
+        {
+            var id = Int32.Parse(form["idMyTarget"]);
+            myTargetDao.Approved(id);
+            return RedirectToAction("ApproveTarget", new { mess = "1" });
+        }
+
+        public ActionResult Complete(FormCollection form)
+        {
+            var id = Int32.Parse(form["idMyTarget"]);
+            myTargetDao.Approved(id);
+            return RedirectToAction("Index", new { mess = "1" });
+        }
+
         [HttpGet]
         public ActionResult Add(string mess)
         {

@@ -253,3 +253,4 @@ D:\.NET MVC\ToeicAsp\ToeicAspMVC\obj\Debug\ToeicAspMVC.csproj.CoreCompileInputs.
 D:\.NET MVC\ToeicAsp\ToeicAspMVC\obj\Debug\ToeicAspMVC.csproj.CopyComplete
 D:\.NET MVC\ToeicAsp\ToeicAspMVC\obj\Debug\ToeicAspMVC.dll
 D:\.NET MVC\ToeicAsp\ToeicAspMVC\obj\Debug\ToeicAspMVC.pdb
+D:\.NET MVC\ToeicAsp\ToeicAspMVC\obj\Debug\ToeicAspMVC.Migrations.addtable.resources

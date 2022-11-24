@@ -15,6 +15,11 @@ namespace ToeicAspMVC.Daos
             return myDb.distances.ToList();
         }
 
+        public List<Distance> Recommend(int point)
+        {
+            return myDb.distances.Where(x => x.fromPoint <= point && x.point >= point).ToList();
+        }
+
         public Distance GetDetail(int id)
         {
             return myDb.distances.FirstOrDefault(x => x.idDistance == id);

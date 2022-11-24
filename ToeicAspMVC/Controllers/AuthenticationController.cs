@@ -12,7 +12,8 @@ namespace ToeicAspMVC.Controllers
     public class AuthenticationController : Controller
     {
         UserDao userDao = new UserDao();
-        string[] answers = { "A", "B", "D", "A", "C", "B", "A", "D", "D", "B", "A", "B", "C", "D", "A", "B", "A", "C", "B", "A"};
+        DistanceDao distanceDao = new DistanceDao();
+        string[] answers = { "A", "B", "B", "A", "C", "B", "A", "D", "D", "B", "A", "B", "C", "D", "A", "B", "A", "C", "B", "A"};
         // GET: Authentication
         public ActionResult Index()
         {
@@ -31,6 +32,34 @@ namespace ToeicAspMVC.Controllers
         public ActionResult TestExam()
         {
             return View();
+        }
+
+        public ActionResult RecommendDistance()
+        {
+            User user = (User)Session["User"];
+            var point = user.point;
+            ViewBag.Distance = distanceDao.Recommend(point);
+            ViewBag.point = point.ToString();
+            return View();
+        }
+
+        public ActionResult Information(string msg)
+        {
+            User user = (User)Session["USER"];
+            ViewBag.Msg = msg;
+            ViewBag.User = userDao.getById(user.idUser);
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult UpdateInfor(User user)
+        {
+            User usercurrent = (User)Session["User"];
+            usercurrent.fullName = user.fullName;
+            usercurrent.phoneNumber = user.phoneNumber;
+            usercurrent.password = user.password;
+            userDao.Update(usercurrent);
+            return RedirectToAction("Information", new { msg = "1" });
         }
 
         [HttpPost]
@@ -66,6 +95,7 @@ namespace ToeicAspMVC.Controllers
                     userObj.phoneNumber = user.phoneNumber;
                     userObj.status = status;
                     userObj.idRole = 3;
+                    userObj.isTest = false;
                     userDao.Add(userObj);
                     return RedirectToAction("Login");
                 }
@@ -116,10 +146,11 @@ namespace ToeicAspMVC.Controllers
             {
                 if (answers[i].Equals(request.Answers[i]))
                 {
-                    total += 10;
+                    total += 50;
                 }
             };
-            user.point = total;
+            user.point = user.point +  total;
+            user.isTest = true;
             userDao.Update(user);
             return Json(new { Total = total, Status = true }, JsonRequestBehavior.AllowGet);
            

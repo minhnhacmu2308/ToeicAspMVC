@@ -1,0 +1,42 @@
+﻿
+@{
+    ViewBag.Title = "RecommendDistance";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<main class="bg-grey pb-30">
+    <div class="archive-header pt-50">
+        <div class="container">
+            <h2 class="font-weight-900">Danh sách lộ trình phù hợp với bạn (Điểm : @ViewBag.point)</h2>
+        </div>
+    </div>
+    @{ var stt = 1;}
+<div class="container single-content">
+    @if (ViewBag.Distance.Count == 0)
+    {
+        <div class="entry-header entry-header-style-1 mb-50 pt-50">
+            <h1 class="entry-title mb-50 font-weight-900">
+                Không có lộ trình phù hợp với điểm của bạn
+            </h1>
+        </div>
+    }
+    else
+    {
+        foreach (var distance in ViewBag.Distance)
+        {
+            <div class="entry-header entry-header-style-1 mb-50 pt-50">
+                <h1 class="entry-title mb-50 font-weight-900">
+                    Lộ trình @stt
+                </h1>
+            </div>
+            <article class="entry-wraper mb-50">
+                @Html.Raw(distance.description)
+            </article>
+            stt++;
+        }
+    }
+
+</div>
+    <!--container-->
+</main>
+

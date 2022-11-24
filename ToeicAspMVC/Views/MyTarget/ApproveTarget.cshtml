@@ -1,0 +1,108 @@
+﻿
+@{
+    ViewBag.Title = "ApproveTarget";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<main>
+    <div class="archive-header pt-50">
+        <div class="container">
+            <h2 class="font-weight-900">Danh sách mục tiêu của học viên</h2>
+
+            <div class="bt-1 border-color-1 mt-30 mb-50"></div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="loop-grid mb-30">
+            @if (ViewBag.Msg != null)
+            {
+                <div class="alert alert-success">
+                    <strong>Thành công</strong>
+                </div>
+            }
+            <div class="row">
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th scope="col">STT</th>
+                            <th scope="col">Học viên</th>
+                            <th scope="col">Tên mục tiêu</th>
+                            <th scope="col">Ngày hoàn thành</th>
+                            <th scope="col">Điểm đạt được</th>
+                            <th scope="col">Tình trạng</th>
+                            <th scope="col">Hành động</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @{ int index = 0;}
+                        @foreach (var item in ViewBag.List)
+                        {
+                            var idModelDel = "exampleModalDel" + item.idMyTarget;
+                            index++;
+                        <tr>
+                            <th scope="row">@index</th>
+                            <td>
+                                @item.User.fullName
+                            </td>
+                            <td>
+                                @item.Target.name
+                            </td>
+                            <td>@item.deadline</td>
+                            <td>
+                               @item.Target.point
+                            </td>
+                            <td>
+                                @if (item.status == 1)
+                                {
+                                    <span>Đã hoàn thành</span>
+                                }
+                                else
+                                {
+                                    <span>Chưa hoàn thành</span>
+                                }
+                            </td>
+                            <td>
+                                @if (item.status == 0)
+                                {
+                                    <button type="button" data-bs-toggle="modal" data-bs-target="#@idModelDel" style="width:100px" class="btn btn-warning"> Cập nhập</button>
+                                }
+                                <div class="modal fade" id="@idModelDel" tabindex="-1"
+                                     aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="exampleModalLabel">Bạn chắc chắn muốn phê duyệt ?</h5>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                        aria-label="Close"></button>
+                                            </div>
+
+                                            <div class="modal-body">
+                                                Mục tiêu: @item.Target.name của Học viên : @item.User.fullName đã hoàn thành
+                                                <form action="/MyTarget/Approved" method="post">
+                                                    <input type="hidden" class="form-control" id="id" name="idMyTarget" value="@item.idMyTarget">
+                                                    <div class="modal-footer" style="margin-top: 20px">
+                                                        <button style="width:100px" type="button" class="btn btn-secondary"
+                                                                data-bs-dismiss="modal">
+                                                            Đóng
+                                                        </button>
+                                                        <button style="width:100px" type="submit" class="btn btn-warning"> Cập nhập</button>
+                                                    </div>
+                                                </form>
+
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                        }
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+</main>
+

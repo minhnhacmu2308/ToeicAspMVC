@@ -1,0 +1,42 @@
+﻿
+@{
+    ViewBag.Title = "Information";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<main class="bg-grey pb-30">
+    <div class="archive-header pt-50">
+        <div class="container">
+            <h2 class="font-weight-900">Thông tin cá nhân</h2>
+
+            <div class="bt-1 border-color-1 mt-30 mb-50"></div>
+        </div>
+    </div>
+    <div class="container single-content">
+        @if (ViewBag.Msg != null)
+        {
+            <div class="alert alert-success">
+                <strong>Thành công</strong>
+            </div>
+        }
+        <form action="/Authentication/UpdateInfor" method="post">
+            <div class="form-group">
+                <input type="text" required="" class="form-control" name="email" value="@ViewBag.User.email" readonly>
+            </div>
+            <div class="form-group">
+                <input type="text" required="" class="form-control" name="fullname" value="@ViewBag.User.fullName">
+            </div>
+            <div class="form-group">
+                <input class="form-control" required="" type="text" name="phoneNumber" value="@ViewBag.User.phoneNumber">
+            </div>
+            <div class="form-group">
+                <input class="form-control" required="" type="text" name="password" value="@ViewBag.User.password">
+            </div>
+            <div class="form-group">
+                <button type="submit" class="button button-contactForm btn-block">Cập nhập</button>
+            </div>
+        </form>
+    </div>
+    <!--container-->
+</main>
+
