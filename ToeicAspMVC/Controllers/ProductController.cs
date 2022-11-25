@@ -13,9 +13,8 @@ namespace ToeicAspMVC.Controllers
         ProductDao productDao = new ProductDao();
         UserDao userDao = new UserDao();
         // GET: Document
-        public ActionResult Index(string msg)
+        public ActionResult Index()
         {
-            ViewBag.Msg = msg;
             ViewBag.List = productDao.GetAll();
             return View();
         }
@@ -35,22 +34,29 @@ namespace ToeicAspMVC.Controllers
 
         [HttpPost]
         [ValidateInput(false)]
-        public ActionResult Add(UserProduct userProduct)
+        public ActionResult Index(UserProduct userProduct)
         {
-            userProduct.status = 0;
-            userProduct.created = DateTime.Now.ToString();
-            productDao.AddUserProduct(userProduct);
+           
             var product = productDao.GetDetail(userProduct.idProduct);
             User userCurrent = (User)Session["User"];
-            userCurrent.point = userCurrent.point - product.point;
-            if(userCurrent.point < 0)
+            
+            if(userCurrent.point < product.point)
             {
-                return RedirectToAction("Index", new { msg = "2" });
+                ViewBag.Msg = "2";
+                ViewBag.List = productDao.GetAll();
+                return View("Index");
+
             }
             else
             {
+                userCurrent.point = userCurrent.point - product.point;
+                userProduct.status = 0;
+                userProduct.created = DateTime.Now.ToString();
+                productDao.AddUserProduct(userProduct);
                 userDao.Update(userCurrent);
-                return RedirectToAction("Index", new { msg = "1" });
+                ViewBag.Msg = "1";
+                ViewBag.List = productDao.GetAll();
+                return View("Index");
             }
         }
     }

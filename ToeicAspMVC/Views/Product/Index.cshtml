@@ -4,20 +4,33 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 @{ var userInfomatiom = (ToeicAspMVC.Models.User)Session["User"]; }
-@if (ViewBag.Msg != null)
+@if (ViewBag.Msg == "1")
 {
-   
-        <script>
-            swal({
-                title: 'Quy đổi sản phẩm thành công,
-                /* text: 'Redirecting...', */
-                icon: 'success',
-                timer: 3000,
-                buttons: true,
-                type: 'success'
-            })
-        </script>
 
+    <script>
+        swal({
+            title: 'Quy đổi sản phẩm thành công',
+                    /* text: 'Redirecting...', */
+            icon: 'success',
+            timer: 3000,
+            buttons: true,
+            type: 'success'
+        })
+    </script>
+
+}
+else if (ViewBag.Msg == "2")
+{
+    <script>
+        swal({
+            title: 'Không đủ điểm quy đổi',
+                    /* text: 'Redirecting...', */
+            icon: 'error',
+            timer: 3000,
+            buttons: true,
+            type: 'error'
+        })
+    </script>
 }
 <main>
     <div class="archive-header pt-50">
@@ -67,28 +80,30 @@
 
                                 <div class="modal-body">
                                     <h5>Sản phẩm: @item1.name bằng @item1.point điểm</h5>
-                                    <form action="/Product/Add" method="post">
-                                        <input type="hidden" name="idUser" value="@userInfomatiom.idUser" />
-                                        <input type="hidden" name="idProduct" value="@item1.idProduct" />
-                                        <div class="col">
-                                            <div class="row">
-                                                <div class="col-12 mb-3">
-                                                    <label for="category-film"
-                                                           class="col-form-label">Ghi chú:</label>
-                                                    <textarea name="note" class="form-control" cols="100"
-                                                              rows="5"></textarea>
+                                    @if (userInfomatiom != null)
+                                    {
+                                        <form action="/Product/Index" method="post">
+                                            <input type="hidden" name="idUser" value="@userInfomatiom.idUser" />
+                                            <input type="hidden" name="idProduct" value="@item1.idProduct" />
+                                            <div class="col">
+                                                <div class="row">
+                                                    <div class="col-12 mb-3">
+                                                        <label for="category-film"
+                                                               class="col-form-label">Ghi chú:</label>
+                                                        <textarea name="note" class="form-control" cols="100"
+                                                                  rows="5"></textarea>
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                        <div class="modal-footer">
-                                            <button type="button" class="btn btn-danger"
-                                                    data-bs-dismiss="modal">
-                                                Đóng
-                                            </button>
-                                            <button type="submit" class="btn btn-primary">Quy đổi </button>
-                                        </div>
-                                    </form>
-
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-danger"
+                                                        data-bs-dismiss="modal">
+                                                    Đóng
+                                                </button>
+                                                <button type="submit" class="btn btn-primary">Quy đổi </button>
+                                            </div>
+                                        </form>
+                                    }
                                 </div>
 
                             </div>
