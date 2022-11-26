@@ -180,10 +180,10 @@
                             <td>@item.created</td>
                             @{
                                 DateTime startDate = DateTime.Parse(item.deadline);
-                                int result = DateTime.Compare(startDate, DateTime.Now);
+                                int result = DateTime.Compare(startDate.Date, DateTime.Now.Date);
                             }
                             <td>
-                                @if (item.status == 0 && item.idTarget == 1 && result > 0)
+                                @if (item.status == 0 && item.idTarget == 1 && (result > 0 || result == 0))
                                 {
                                     <button type="button" data-bs-toggle="modal" data-bs-target="#@idModelDel" style="width:100px" class="btn btn-warning"> Cập nhập</button>
                                 }
