@@ -44,6 +44,7 @@
                         @foreach (var item in ViewBag.List)
                         {
                             var nameModelDes = "exampleModalDes" + item.idPost;
+                            var idModelDell = "exampleModalDell" + item.idPost;
                     <tr>
                         <td style="width:10px">@stt</td>
                         <td>
@@ -72,7 +73,36 @@
                             {
                                 <button type="button" data-bs-toggle="modal" data-bs-target="#@idModelDel" style="width:100px" class="btn btn-warning"> Duyệt</button>
                             }
+                            <button type="button" data-bs-toggle="modal" data-bs-target="#@idModelDell" style="width:100px" class="btn btn-danger"> Xóa</button>
                         </td>
+                        <div class="modal fade" id="@idModelDell" tabindex="-1"
+                             aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel">Bạn chắc chắn muốn xóa ?</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                aria-label="Close"></button>
+                                    </div>
+
+                                    <div class="modal-body">
+                                        Bài đăng : @item.title của học viên @item.User.fullName
+                                        <form action="/AdminPost/Delete" method="post">
+                                            <input type="hidden" class="form-control" id="id" name="idPost" value="@item.idPost">
+                                            <div class="modal-footer" style="margin-top: 20px">
+                                                <button style="width:100px" type="button" class="btn btn-secondary"
+                                                        data-bs-dismiss="modal">
+                                                    Đóng
+                                                </button>
+                                                <button style="width:100px" type="submit" class="btn btn-danger"> Xóa</button>
+                                            </div>
+                                        </form>
+
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
                         <div class="modal fade" id="@idModelDel" tabindex="-1"
                              aria-labelledby="exampleModalLabel" aria-hidden="true">
                             <div class="modal-dialog">

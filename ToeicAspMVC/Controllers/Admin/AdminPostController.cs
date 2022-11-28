@@ -24,5 +24,12 @@ namespace ToeicAspMVC.Controllers.Admin
             postDao.Approved(post);
             return RedirectToAction("Index", new { msg = "1" });
         }
+
+        [HttpPost, ValidateInput(false)]
+        public ActionResult Delete(Post post)
+        {
+            postDao.Delete(post.idPost);
+            return RedirectToAction("Index", new { msg = "1" });
+        }
     }
 }

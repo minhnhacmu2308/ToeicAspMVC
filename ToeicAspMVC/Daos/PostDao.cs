@@ -86,5 +86,15 @@ namespace ToeicAspMVC.Daos
                 Skip((page - 1) * pagesize).Take(pagesize).ToList();
         }
 
+        public void Delete(int id)
+        {
+            var obj = myDb.posts.FirstOrDefault(x => x.idPost == id);
+            var comment = myDb.comments.Where(x => x.idPost == id).ToList();
+            myDb.comments.RemoveRange(comment);
+            myDb.SaveChanges();
+            myDb.posts.Remove(obj);
+            myDb.SaveChanges();
+        }
+
     }
 }

@@ -1,7 +1,7 @@
 ﻿<!DOCTYPE html>
 <html class="no-js" lang="en">
 <!-- Copied from http://demos.alithemes.com/html/stories/demo/index.html by Cyotek WebCopy 1.8.0.652, Monday, September 7, 2020, 6:05:35 PM -->
-
+@{ var userInfomatiom = (ToeicAspMVC.Models.User)Session["User"]; }
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
@@ -34,6 +34,21 @@
             line-height: 48px
         }
     </style>
+    @if(userInfomatiom == null || (userInfomatiom != null && userInfomatiom.idRole == 3)) {
+    <!--Start of Tawk.to Script-->
+    <script type="text/javascript">
+        var Tawk_API = Tawk_API || {}, Tawk_LoadStart = new Date();
+        (function () {
+            var s1 = document.createElement("script"), s0 = document.getElementsByTagName("script")[0];
+            s1.async = true;
+            s1.src = 'https://embed.tawk.to/63842d7fb0d6371309d168a8/1giu53fak';
+            s1.charset = 'UTF-8';
+            s1.setAttribute('crossorigin', '*');
+            s0.parentNode.insertBefore(s1, s0);
+        })();
+    </script>
+    }
+    <!--End of Tawk.to Script-->
 </head>
 
 <body>

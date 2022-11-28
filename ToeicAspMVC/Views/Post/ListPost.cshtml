@@ -21,6 +21,7 @@
                         <div class="loop-list loop-list-style-1">
                             @foreach (var item in ViewBag.List)
                             {
+                                var idModelDel = "exampleModalDel" + item.idPost;
                                 <article class="hover-up-2 transition-normal wow fadeInUp animated">
                                     <div class="row mb-40 list-style-2">
 
@@ -43,11 +44,41 @@
                                                     {
                                                         <button type="button" class="btn btn-success btn-sm ">Đã duyệt</button>
                                                     }
+                                                    <button type="button" data-bs-toggle="modal" data-bs-target="#@idModelDel" style="width:60px" class="btn btn-danger btn-sm"> Xóa</button>
+
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                 </article>
+                                <div class="modal fade" id="@idModelDel" tabindex="-1"
+                                     aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="exampleModalLabel">Bạn chắc chắn muốn xóa ?</h5>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                        aria-label="Close"></button>
+                                            </div>
+
+                                            <div class="modal-body">
+                                                Bài đăng: @item.title
+                                                <form action="/Post/Delete" method="post">
+                                                    <input type="hidden" class="form-control" id="id" name="idPost" value="@item.idPost">
+                                                    <div class="modal-footer" style="margin-top: 20px">
+                                                        <button style="width:100px" type="button" class="btn btn-secondary"
+                                                                data-bs-dismiss="modal">
+                                                            Đóng
+                                                        </button>
+                                                        <button style="width:100px" type="submit" class="btn btn-danger">Xóa</button>
+                                                    </div>
+                                                </form>
+
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
                             }
 
                         </div>

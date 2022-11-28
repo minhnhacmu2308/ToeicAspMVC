@@ -34,6 +34,15 @@ namespace ToeicAspMVC.Controllers
         }
 
         [HttpPost, ValidateInput(false)]
+        public ActionResult Delete(Post post)
+        {
+            User user = (User)Session["User"];
+            postDao.Delete(post.idPost);
+            string url = "/Post/List/"+ user.idUser+"/1";
+            return Redirect(url);
+        }
+
+        [HttpPost, ValidateInput(false)]
         public ActionResult Add(Post post)
         {
             var file = Request.Files["file"];
